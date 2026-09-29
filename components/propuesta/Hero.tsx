@@ -56,8 +56,8 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.9, ease: EASE }}
           >
-            Leímos todo lo que nos mandaste. Te preparamos tres caminos para la página. Todos llevan la identidad de Al Galope;
-            la diferencia está en cuánto <strong>se mueve</strong> y en cómo se siente tu marca.
+            Tu landing en español e inglés ya está confirmada. Leímos todo lo que nos mandaste y te mostramos cómo llevarla
+            más lejos: la diferencia está en cuánto <strong>se mueve</strong> y en cómo se siente tu marca.
           </motion.p>
           <motion.div
             className={s.heroActions}

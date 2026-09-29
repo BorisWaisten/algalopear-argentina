@@ -11,9 +11,9 @@ type Seleccion = Record<string, number>;
 
 // Qué extras equivale cada plan dentro de la calculadora.
 const PRESETS: Record<string, Seleccion> = {
-  esencial: {},
-  animada: { idioma: 1, slider: 1, animaciones: 1 },
-  premium: { idioma: 1, slider: 1, animaciones: 1, efectos: 1 },
+  confirmado: {},
+  animada: { slider: 1, animaciones: 1 },
+  premium: { slider: 1, animaciones: 1, efectos: 1 },
 };
 
 export function Opciones() {
@@ -37,11 +37,11 @@ function Planes({ onElegir }: { onElegir: (p: Plan) => void }) {
     <section id="opciones" className={`${s.section} ${s.sectionDark}`}>
       <div className={s.wrap}>
         <Eyebrow>04 · Las opciones</Eyebrow>
-        <Titulo lineas={['Tres caminos.', 'Una misma identidad.']} className={s.h2} />
+        <Titulo lineas={['Tu landing ya está.', 'Ahora, a darle vida.']} className={s.h2} />
         <Reveal delay={0.2}>
           <p className={s.lead}>
-            Los precios salen del presupuesto que ya te pasamos: base de {formatoARS(PRECIOS.base)} y{' '}
-            {formatoARS(PRECIOS.funcionalidad)} por cada funcionalidad extra. No cambió nada; solo lo ordenamos en paquetes.
+            Partimos de lo que ya confirmamos: la landing en español e inglés por {formatoARS(PRECIOS.confirmado)}. Si querés
+            llevarla más lejos, cada mejora suma {formatoARS(PRECIOS.funcionalidad)}, como en el presupuesto original.
           </p>
         </Reveal>
 
@@ -55,7 +55,7 @@ function Planes({ onElegir }: { onElegir: (p: Plan) => void }) {
           {PLANES.map((plan) => (
             <motion.article
               key={plan.id}
-              className={`${s.plan} ${plan.destacado ? s.planDestacado : ''}`}
+              className={`${s.plan} ${plan.destacado ? s.planDestacado : ''} ${plan.confirmado ? s.planConfirmado : ''}`}
               variants={{ oculto: { opacity: 0, y: 60 }, visible: { opacity: 1, y: plan.destacado ? -12 : 0 } }}
               transition={{ duration: 0.9, ease: EASE }}
               whileHover={{ y: plan.destacado ? -20 : -8 }}
@@ -66,12 +66,18 @@ function Planes({ onElegir }: { onElegir: (p: Plan) => void }) {
                   <span className={s.planBadge}>Recomendada</span>
                 </>
               )}
+              {plan.confirmado && <span className={`${s.planBadge} ${s.planBadgeOk}`}>✓ Confirmado · 50% abonado</span>}
               <h3 className={`${s.display} ${s.planName}`}>{plan.nombre}</h3>
               <p className={s.planBajada}>{plan.bajada}</p>
               <div className={`${s.display} ${s.planPrecio}`}>
                 <AnimatedNumber value={plan.precio} duracion={1.6} />
                 <span className={s.planMoneda}>ARS</span>
               </div>
+              <p className={s.planDelta}>
+                {plan.confirmado
+                  ? `Abonado: ${formatoARS(PRECIOS.abonado)}`
+                  : `+ ${formatoARS(plan.precio - PRECIOS.confirmado)} sobre lo confirmado`}
+              </p>
               <ul className={s.planLista}>
                 {plan.incluye.map((item) => (
                   <li key={item}>
@@ -93,7 +99,7 @@ function Planes({ onElegir }: { onElegir: (p: Plan) => void }) {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => onElegir(plan)}
               >
-                Armar con este plan
+                {plan.confirmado ? 'Ver lo confirmado' : 'Sumar a mi landing'}
               </motion.button>
             </motion.article>
           ))}
@@ -115,7 +121,8 @@ function Calculadora({ seleccion, setSeleccion }: { seleccion: Seleccion; setSel
     cant: seleccion[e.id],
     subtotal: e.precio * seleccion[e.id],
   }));
-  const total = PRECIOS.base + lineas.reduce((acc, l) => acc + l.subtotal, 0);
+  const mejoras = lineas.reduce((acc, l) => acc + l.subtotal, 0);
+  const total = PRECIOS.confirmado + mejoras;
   const presetActivo = Object.entries(PRESETS).find(([, p]) => mismaSeleccion(p, seleccion))?.[0];
 
   const cambiar = (id: string, cant: number) =>
@@ -132,7 +139,9 @@ function Calculadora({ seleccion, setSeleccion }: { seleccion: Seleccion; setSel
         <Eyebrow>05 · Armá tu propuesta</Eyebrow>
         <Titulo lineas={['Sumá solo', 'lo que querés.']} className={s.h2} />
         <Reveal delay={0.2}>
-          <p className={s.lead}>Partí de un plan o activá cada extra por separado. El total se actualiza al instante.</p>
+          <p className={s.lead}>
+            Lo confirmado queda fijo. Activá las mejoras que te gusten y mirá cómo cambia el total y el saldo.
+          </p>
         </Reveal>
 
         <div className={s.calc}>
@@ -155,10 +164,10 @@ function Calculadora({ seleccion, setSeleccion }: { seleccion: Seleccion; setSel
                   <span className={s.knob} />
                 </span>
                 <span className={s.extraTxt}>
-                  <strong>Landing base (5 secciones)</strong>
-                  <small>Diseño con tu identidad, navegación y hasta 5 secciones. Siempre incluida.</small>
+                  <strong>Landing + inglés (confirmada)</strong>
+                  <small>5 secciones con tu identidad, en español e inglés. 50% ya abonado.</small>
                 </span>
-                <span className={s.extraPrecio}>{formatoARS(PRECIOS.base)}</span>
+                <span className={s.extraPrecio}>{formatoARS(PRECIOS.confirmado)}</span>
               </div>
 
               {EXTRAS.map((e) => {
@@ -217,8 +226,8 @@ function Calculadora({ seleccion, setSeleccion }: { seleccion: Seleccion; setSel
               <p className={s.resumenTitulo}>Tu propuesta</p>
               <ul className={s.resumenLineas}>
                 <li className={s.resumenLinea}>
-                  <span>Landing base</span>
-                  <span>{formatoARS(PRECIOS.base)}</span>
+                  <span>Landing + inglés (confirmada)</span>
+                  <span>{formatoARS(PRECIOS.confirmado)}</span>
                 </li>
                 <AnimatePresence initial={false}>
                   {lineas.map((l) => (
@@ -246,9 +255,23 @@ function Calculadora({ seleccion, setSeleccion }: { seleccion: Seleccion; setSel
                 </strong>
               </div>
               <div className={s.resumenPago}>
-                Anticipo al arrancar (50%): <strong><Contador value={total / 2} /></strong>
+                Ya abonado: <strong>{formatoARS(PRECIOS.abonado)}</strong> ✓
                 <br />
-                Al entregar (50%): <strong><Contador value={total / 2} /></strong>
+                Saldo a pagar: <strong><Contador value={total - PRECIOS.abonado} /></strong>
+                <AnimatePresence initial={false}>
+                  {mejoras > 0 && (
+                    <motion.span
+                      key="mejoras"
+                      style={{ display: 'block', overflow: 'hidden' }}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                    >
+                      <br />
+                      De las mejoras, 50% al sumarlas (<Contador value={mejoras / 2} />) y el resto con la entrega.
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </div>
             </aside>
           </Reveal>

@@ -39,7 +39,7 @@ export function Diferencia() {
         <Reveal delay={0.2}>
           <p className={s.lead}>
             Este es el inicio de tu página con tu foto y tu texto. Cambiá entre estática y animada, y probá el cambio de
-            idioma. Las animaciones no son decoración: hacen que una yerba de exportación se sienta premium.
+            idioma, que ya está incluido. Las animaciones no son decoración: hacen que una yerba de exportación se sienta premium.
           </p>
         </Reveal>
 
@@ -84,10 +84,10 @@ export function Diferencia() {
 
         <div className={s.demoCaption}>
           <span>
-            <strong>Estática</strong> es lo que incluye el plan Esencial.
+            <strong>Estática + inglés</strong> es tu landing confirmada.
           </span>
           <span>
-            <strong>Animada + inglés</strong> es lo que incluyen los planes Animada y Premium.
+            <strong>Animada</strong> es lo que suman los planes Animada y Premium.
           </span>
         </div>
       </div>

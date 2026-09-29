@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { ESTUDIO, PENDIENTES } from './data';
+import { ESTUDIO, PENDIENTES, PRECIOS } from './data';
 import s from './propuesta.module.css';
-import { EASE, Eyebrow, GuardaPampa, Reveal, Titulo } from './ui';
+import { EASE, Eyebrow, GuardaPampa, Reveal, Titulo, formatoARS } from './ui';
 
 export function Tienda() {
   return (
@@ -18,7 +18,7 @@ export function Tienda() {
           <Reveal>
             <div className={s.tiendaCol}>
               <h3 className={s.display}>Landing</h3>
-              <p>Lo que cotizamos · estilo Cósmico</p>
+              <p>Lo que confirmamos · estilo Cósmico</p>
               <ul>
                 <li>Una sola página con secciones</li>
                 <li>Presenta la marca y los productos</li>
@@ -115,18 +115,18 @@ export function Pendientes() {
         <div className={s.cierre} style={{ marginTop: 90 }}>
           <div>
             <Eyebrow>Forma de pago</Eyebrow>
-            <Titulo lineas={['Dos pagos.', 'Sin sorpresas.']} className={s.h2} />
+            <Titulo lineas={['Dos pagos.', 'El primero, listo.']} className={s.h2} />
             <div className={s.pagos}>
               <Reveal>
                 <div className={s.pago}>
-                  <strong>50%</strong>
-                  <span>al arrancar el proyecto</span>
+                  <strong>50% ✓</strong>
+                  <span>abonado al arrancar ({formatoARS(PRECIOS.abonado)})</span>
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
                 <div className={s.pago}>
                   <strong>50%</strong>
-                  <span>al entregar la página terminada</span>
+                  <span>al entregar, más las mejoras que sumes</span>
                 </div>
               </Reveal>
             </div>

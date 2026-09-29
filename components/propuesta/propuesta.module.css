@@ -816,6 +816,21 @@
   text-transform: uppercase;
 }
 
+.planConfirmado {
+  border-color: rgba(143, 163, 90, 0.55);
+}
+
+.planBadgeOk {
+  background: var(--crema);
+  color: var(--petroleo);
+}
+
+.planDelta {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
 .planName {
   font-size: 1.7rem;
   margin: 0;

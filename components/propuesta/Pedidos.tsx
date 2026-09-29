@@ -16,14 +16,14 @@ export function Pedidos() {
             <Titulo lineas={['Tu documento,', 'punto por punto.']} className={s.h2} />
             <Reveal delay={0.2}>
               <p className={s.lead}>
-                La página de referencia, Yerba Mate Origen, es una tienda online con varias páginas. Lo que cotizamos es una
-                landing del estilo de Cósmico. Te mostramos qué entra en la base y qué suma.
+                La página de referencia, Yerba Mate Origen, es una tienda online con varias páginas. Lo que confirmamos es una
+                landing del estilo de Cósmico, en español e inglés. Te mostramos qué entra y qué suma.
               </p>
             </Reveal>
           </div>
           <Reveal delay={0.3} className={s.legend}>
             <span>
-              <i className={`${s.mark} ${s.markOk}`}>✓</i> Entra en la base
+              <i className={`${s.mark} ${s.markOk}`}>✓</i> Entra en lo confirmado
             </span>
             <span>
               <i className={`${s.mark} ${s.markExtra}`}>+</i> Es un extra
