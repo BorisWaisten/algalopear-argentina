@@ -76,7 +76,6 @@ export const HISTORIA = {
 };
 
 export type Spec = { icono: string; label: T; valor: T };
-export type Perfil = { label: T; nivel: number; valor: T };
 
 // Cualidades de la ficha técnica en inglés (última versión) y del catálogo. La composición
 // de la molienda y el proceso de producción no se publican: son fórmula y secreto industrial.
@@ -90,13 +89,6 @@ const SPECS_YERBA: Spec[] = [
   { icono: 'reloj', label: { en: 'Aging', es: 'Estacionamiento' }, valor: { en: 'Naturally aged for more than 18 months', es: 'Natural, más de 18 meses' } },
 ];
 
-// Perfil de la yerba: niveles de 1 a 5 para mostrar de un vistazo que es de baja acidez.
-const PERFIL_YERBA: Perfil[] = [
-  { label: { en: 'Acidity', es: 'Acidez' }, nivel: 1, valor: { en: 'Low', es: 'Baja' } },
-  { label: { en: 'Dust', es: 'Polvo' }, nivel: 1, valor: { en: 'Low', es: 'Bajo' } },
-  { label: { en: 'Smoothness', es: 'Suavidad' }, nivel: 5, valor: { en: 'High', es: 'Alta' } },
-  { label: { en: 'Lasting flavor', es: 'Duración del sabor' }, nivel: 5, valor: { en: 'High', es: 'Alta' } },
-];
 
 const CERTS_CHIPS: T[] = [
   { en: 'Gluten free', es: 'Sin TACC' },
@@ -124,7 +116,6 @@ export type Producto = {
   imagenes: { src: string; label?: T }[];
   fondo: 'transparente' | 'claro' | 'foto';
   specs: Spec[];
-  perfil?: Perfil[];
   chips?: T[];
   // Presentaciones del mismo producto (la yerba viene en 250 g y 500 g).
   tamanos?: T[];
@@ -163,7 +154,6 @@ export const CATEGORIAS: Categoria[] = [
         imagenes: [{ src: '/landing/caja.png' }],
         fondo: 'transparente',
         specs: SPECS_YERBA,
-        perfil: PERFIL_YERBA,
         chips: CERTS_CHIPS,
       },
     ],

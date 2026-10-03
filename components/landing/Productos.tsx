@@ -130,28 +130,6 @@ function FilaProducto({ producto: p }: { producto: Producto }) {
         <Reveal as="p" y={16} delay={0.1} className={s.productoDesc}>
           {t(p.descripcion)}
         </Reveal>
-        {p.perfil && (
-          <div className={s.perfil}>
-            {p.perfil.map((pf, i) => (
-              <div key={pf.label.en} className={s.perfilFila}>
-                <span className={s.perfilLabel}>{t(pf.label)}</span>
-                <span className={s.perfilNiveles} aria-hidden>
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <motion.i
-                      key={n}
-                      className={n <= pf.nivel ? s.perfilOn : ''}
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.2 + i * 0.1 + n * 0.06, ease: EASE }}
-                    />
-                  ))}
-                </span>
-                <strong className={s.perfilValor}>{t(pf.valor)}</strong>
-              </div>
-            ))}
-          </div>
-        )}
         <motion.dl
           className={s.specs}
           initial="oculto"

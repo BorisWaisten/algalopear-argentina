@@ -1132,54 +1132,6 @@
   max-width: 52ch;
 }
 
-.perfil {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0 0 26px;
-  padding: 18px 20px;
-  border-radius: 18px;
-  background: rgba(34, 54, 52, 0.06);
-  max-width: 460px;
-}
-
-.perfilFila {
-  display: grid;
-  grid-template-columns: minmax(96px, 1fr) auto 52px;
-  align-items: center;
-  gap: 14px;
-}
-
-.perfilLabel {
-  font-family: var(--font-label), sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tinta-suave);
-}
-
-.perfilNiveles {
-  display: flex;
-  gap: 4px;
-}
-
-.perfilNiveles i {
-  width: 22px;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(34, 54, 52, 0.14);
-  transform-origin: left;
-}
-
-.perfilNiveles .perfilOn {
-  background: var(--petroleo);
-}
-
-.perfilValor {
-  font-size: 0.88rem;
-  text-align: right;
-}
-
 .specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2084,19 +2036,6 @@ a.canal:hover .canalFlecha {
     line-height: 1.7;
   }
 
-  .perfil {
-    max-width: none;
-    padding: 16px;
-  }
-
-  .perfilFila {
-    grid-template-columns: 1fr auto 46px;
-    gap: 10px;
-  }
-
-  .perfilNiveles i {
-    width: 18px;
-  }
 
   .specs > div {
     padding: 14px 0;
