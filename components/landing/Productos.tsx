@@ -26,9 +26,12 @@ export function Productos() {
           </div>
         </div>
 
-        <div id="cat-yerba" className={s.categoria}>
-          <PortadaCategoria titulo={t(YERBA.titulo)} bajada={t(YERBA.bajada)} imagen={YERBA.portada} />
-          <FilaProducto producto={YERBA.productos[0]} />
+      </div>
+
+      <div id="cat-yerba" className={s.categoria}>
+        <PortadaCategoria titulo={t(YERBA.titulo)} bajada={t(YERBA.bajada)} imagen={YERBA.portada} />
+        <FilaProducto producto={YERBA.productos[0]} />
+        <div className={s.wrap}>
           <Certificaciones />
         </div>
       </div>
@@ -228,8 +231,8 @@ function PortadaCategoria({ titulo, bajada, imagen }: { titulo: string; bajada: 
     <motion.div
       ref={ref}
       className={s.portada}
-      initial={{ clipPath: 'inset(8% 4% 8% 4% round 32px)', opacity: 0 }}
-      whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-10% 0px' }}
       transition={{ duration: 1.2, ease: EASE }}
     >

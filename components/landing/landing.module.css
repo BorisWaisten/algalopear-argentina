@@ -852,9 +852,7 @@
   position: relative;
   display: grid;
   place-items: center;
-  min-height: clamp(260px, 38vw, 440px);
-  margin-bottom: clamp(16px, 3vw, 32px);
-  border-radius: 32px;
+  min-height: clamp(340px, 62vh, 640px);
   overflow: hidden;
   isolation: isolate;
   color: #fff;
@@ -940,9 +938,27 @@
 .producto {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(28px, 5vw, 80px);
-  align-items: center;
-  padding-block: clamp(28px, 4vw, 56px);
+  align-items: stretch;
+}
+
+.producto .productoMedia {
+  aspect-ratio: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+/* La imagen queda fija mientras se recorre la información. */
+.producto .productoImg {
+  position: sticky;
+  top: var(--header-h);
+  inset: auto;
+  height: calc(100svh - var(--header-h));
+  max-height: 100%;
+}
+
+.productoInfo {
+  padding: clamp(48px, 6vw, 96px) clamp(20px, 5vw, 80px);
+  max-width: 720px;
 }
 
 .productoInvertido .productoMedia {
@@ -1005,7 +1021,7 @@
 }
 
 .fondo_transparente .productoImgCapa {
-  inset: 12%;
+  inset: 7% 10%;
   filter: drop-shadow(0 40px 40px rgba(0, 0, 0, 0.45));
 }
 
@@ -1791,6 +1807,21 @@ a.canal:hover .canalFlecha {
 
   .producto {
     grid-template-columns: 1fr;
+  }
+
+  .producto .productoMedia {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+
+  .producto .productoImg {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  .productoInfo {
+    padding-inline: clamp(18px, 4vw, 44px);
   }
 
   .accesorios {
