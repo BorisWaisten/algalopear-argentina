@@ -1750,10 +1750,19 @@ a.canal:hover .canalFlecha {
     min-height: 0;
   }
 
+  /* Sin efecto 3D en pantallas táctiles: Safari de iOS deja de dibujar elementos con
+     transformaciones 3D dentro de un contenedor con overflow oculto. */
+  .producto .productoMedia {
+    perspective: none;
+  }
+
   .producto .productoImg {
     position: absolute;
     inset: 0;
     height: auto;
+    max-height: none;
+    transform: none !important;
+    transform-style: flat;
   }
 
   .productoInfo {
