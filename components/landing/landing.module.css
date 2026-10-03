@@ -1206,6 +1206,264 @@
   line-height: 1.4;
 }
 
+/* ---------- Selector de tamaño ---------- */
+
+.tamanos {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.tamanos > span {
+  font-family: var(--font-label), sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--plata-3);
+}
+
+.tamanos div {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(34, 54, 52, 0.08);
+}
+
+.tamanos button {
+  position: relative;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+
+.tamanos button span {
+  position: relative;
+  z-index: 1;
+}
+
+.tamanos .tamanoOn {
+  color: var(--plata);
+}
+
+.tamanoPill {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0 !important;
+  border-radius: 999px;
+  background: var(--petroleo);
+}
+
+/* ---------- Mates y peluches (carrusel estilo Origen) ---------- */
+
+.accesorios {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 0.8fr);
+  margin-top: clamp(70px, 10vw, 130px);
+  border-block: 1px solid rgba(24, 38, 36, 0.14);
+  background: #f3efe7;
+  scroll-margin-top: var(--header-h);
+}
+
+.accesoriosTexto {
+  padding: clamp(40px, 5vw, 72px) clamp(20px, 3vw, 44px);
+  border-right: 1px solid rgba(24, 38, 36, 0.14);
+}
+
+.accesoriosTitulo {
+  margin: 0 0 26px;
+  font-family: var(--font-label), sans-serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+
+.accesoriosDestacado {
+  margin: 0 0 14px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.accesoriosParrafo {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--tinta-suave);
+}
+
+.accesoriosFrase {
+  display: flex;
+  flex-direction: column;
+  margin: 34px 0;
+  font-family: var(--font-label), sans-serif;
+  font-weight: 500;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.accesoriosLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.accesoriosLinks a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.25s, gap 0.25s;
+}
+
+.accesoriosLinks a:first-child {
+  color: var(--azul);
+}
+
+.accesoriosLinks a:hover {
+  color: var(--petroleo-claro);
+}
+
+.carrusel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding-inline: 8px;
+}
+
+.carruselPista {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.carruselPista::-webkit-scrollbar {
+  display: none;
+}
+
+.tarjeta {
+  flex: 0 0 50%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(28px, 4vw, 48px) 18px;
+  text-align: center;
+}
+
+.tarjetaImg {
+  position: relative;
+  width: 78%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 22px 22px rgba(24, 38, 36, 0.22));
+}
+
+.tarjetaImg img {
+  object-fit: contain;
+}
+
+.tarjetaNombre {
+  margin: 0;
+  font-family: var(--font-label), sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.tarjetaDetalle {
+  margin: 6px 0 0;
+  font-size: 0.88rem;
+  color: var(--tinta-suave);
+}
+
+.tarjetaComprar {
+  margin-top: 22px;
+  padding: 8px 4px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--azul) !important;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.25s;
+}
+
+.tarjetaComprar:hover {
+  border-color: currentColor;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-top: -21px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(243, 239, 231, 0.9);
+  color: var(--tinta);
+  cursor: pointer;
+  transition: opacity 0.25s, background 0.25s;
+}
+
+.flecha:hover:not(:disabled) {
+  background: var(--petroleo);
+  color: var(--plata);
+}
+
+.flecha:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.flechaIzq {
+  left: 4px;
+}
+
+.flechaIzq svg {
+  transform: rotate(180deg);
+}
+
+.flechaDer {
+  right: 4px;
+}
+
+.accesoriosFoto {
+  position: relative;
+  margin: 0;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.accesoriosFotoImg {
+  position: absolute;
+  inset: 0;
+}
+
+.accesoriosFotoImg img {
+  object-fit: cover;
+}
+
 /* ---------- Certificaciones (debajo de la yerba) ---------- */
 
 .certs {
@@ -1533,6 +1791,24 @@ a.canal:hover .canalFlecha {
 
   .producto {
     grid-template-columns: 1fr;
+  }
+
+  .accesorios {
+    grid-template-columns: 1fr;
+  }
+
+  .accesoriosTexto {
+    border-right: 0;
+    border-bottom: 1px solid rgba(24, 38, 36, 0.14);
+  }
+
+  .tarjeta {
+    flex-basis: min(70%, 300px);
+  }
+
+  .accesoriosFoto {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .productoInvertido .productoMedia {

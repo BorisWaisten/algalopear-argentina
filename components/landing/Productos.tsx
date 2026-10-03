@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 
-import { CATEGORIAS, CERTIFICACIONES, UI, type Producto } from './content';
+import { ACCESORIOS, ACCESORIOS_TXT, CERTIFICACIONES, UI, YERBA, type Producto } from './content';
 import s from './landing.module.css';
 import { Caballos, EASE, Eyebrow, Icono, Reveal, Titulo, comprarHref, useLang } from './ui';
 
@@ -15,7 +15,6 @@ const TITULO = {
 
 export function Productos() {
   const { lang, t } = useLang();
-  let indice = 0;
 
   return (
     <section id="productos" className={`${s.section} ${s.clara} ${s.productos}`}>
@@ -25,34 +24,24 @@ export function Productos() {
             <Eyebrow>{t(TITULO.eyebrow)}</Eyebrow>
             <Titulo key={lang} className={`${s.display} ${s.h2}`} lineas={TITULO.lineas[lang]} />
           </div>
-          <Reveal delay={0.2} className={s.categoriasNav}>
-            {CATEGORIAS.map((c) => (
-              <a key={c.id} href={`#cat-${c.id}`}>
-                {t(c.titulo)}
-                <span>{c.productos.length}</span>
-              </a>
-            ))}
-          </Reveal>
         </div>
 
-        {CATEGORIAS.map((cat) => (
-          <div key={cat.id} id={`cat-${cat.id}`} className={s.categoria}>
-            <PortadaCategoria titulo={t(cat.titulo)} bajada={t(cat.bajada)} imagen={cat.portada} />
-            {cat.productos.map((p) => {
-              indice += 1;
-              return <FilaProducto key={p.id} producto={p} numero={indice} invertida={indice % 2 === 0} />;
-            })}
-            {cat.certificada && <Certificaciones />}
-          </div>
-        ))}
+        <div id="cat-yerba" className={s.categoria}>
+          <PortadaCategoria titulo={t(YERBA.titulo)} bajada={t(YERBA.bajada)} imagen={YERBA.portada} />
+          <FilaProducto producto={YERBA.productos[0]} />
+          <Certificaciones />
+        </div>
       </div>
+
+      <Accesorios />
     </section>
   );
 }
 
-function FilaProducto({ producto: p, numero, invertida }: { producto: Producto; numero: number; invertida: boolean }) {
+function FilaProducto({ producto: p }: { producto: Producto }) {
   const { lang, t } = useLang();
   const [variante, setVariante] = useState(0);
+  const [tamano, setTamano] = useState(0);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const imgY = useTransform(scrollYProgress, [0, 1], ['6%', '-6%']);
@@ -62,11 +51,12 @@ function FilaProducto({ producto: p, numero, invertida }: { producto: Producto; 
   const rotY = useSpring(useTransform(mx, [-0.5, 0.5], [-12, 12]), { stiffness: 140, damping: 16 });
   const rotX = useSpring(useTransform(my, [-0.5, 0.5], [8, -8]), { stiffness: 140, damping: 16 });
 
-  const nombre = `${t(p.nombre)}${p.detalle ? ` ${t(p.detalle)}` : ''}`;
+  const detalle = p.tamanos ? p.tamanos[tamano] : p.detalle;
+  const nombre = `${t(p.nombre)}${detalle ? ` ${t(detalle)}` : ''}`;
   const img = p.imagenes[variante];
 
   return (
-    <article ref={ref} className={`${s.producto} ${invertida ? s.productoInvertido : ''}`}>
+    <article ref={ref} className={s.producto}>
       <motion.div
         className={`${s.productoMedia} ${s[`fondo_${p.fondo}` as keyof typeof s]}`}
         initial={{ opacity: 0, y: 60 }}
@@ -83,7 +73,6 @@ function FilaProducto({ producto: p, numero, invertida }: { producto: Producto; 
           my.set(0);
         }}
       >
-        <span className={`${s.display} ${s.productoNumero}`}>{String(numero).padStart(2, '0')}</span>
         <motion.div className={s.productoImg} style={p.fondo === 'foto' ? { y: imgY } : { rotateX: rotX, rotateY: rotY }}>
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
@@ -117,6 +106,19 @@ function FilaProducto({ producto: p, numero, invertida }: { producto: Producto; 
             {p.detalle && <span className={s.productoDetalle}>{t(p.detalle)}</span>}
           </h4>
         </Reveal>
+        {p.tamanos && (
+          <Reveal y={12} delay={0.05} className={s.tamanos}>
+            <span>{lang === 'en' ? 'Size' : 'Tamaño'}</span>
+            <div role="group" aria-label={lang === 'en' ? 'Size' : 'Tamaño'}>
+              {p.tamanos.map((tm, i) => (
+                <button key={tm.en} type="button" onClick={() => setTamano(i)} aria-pressed={tamano === i} className={tamano === i ? s.tamanoOn : ''}>
+                  {tamano === i && <motion.span layoutId={`tamano-${p.id}`} className={s.tamanoPill} transition={{ type: 'spring', stiffness: 500, damping: 34 }} />}
+                  <span>{t(tm)}</span>
+                </button>
+              ))}
+            </div>
+          </Reveal>
+        )}
         {p.chips && (
           <Reveal y={12} delay={0.05} className={s.chips}>
             {p.chips.map((c) => (
@@ -241,5 +243,99 @@ function PortadaCategoria({ titulo, bajada, imagen }: { titulo: string; bajada: 
         <p>{bajada}</p>
       </div>
     </motion.div>
+  );
+}
+
+// Carrusel de mates y peluches, con texto a la izquierda y una foto a la derecha.
+function Accesorios() {
+  const { lang, t } = useLang();
+  const pista = useRef<HTMLDivElement>(null);
+  const [bordes, setBordes] = useState({ inicio: true, fin: false });
+
+  const mover = (dir: 1 | -1) => {
+    const el = pista.current;
+    if (!el) return;
+    const tarjeta = el.firstElementChild as HTMLElement | null;
+    el.scrollBy({ left: dir * (tarjeta?.offsetWidth ?? 300), behavior: 'smooth' });
+  };
+
+  const alScrollear = () => {
+    const el = pista.current;
+    if (!el) return;
+    setBordes({ inicio: el.scrollLeft < 8, fin: el.scrollLeft + el.clientWidth > el.scrollWidth - 8 });
+  };
+
+  return (
+    <div id="cat-mates" className={s.accesorios}>
+      <div className={s.accesoriosTexto}>
+        <Eyebrow>{t(ACCESORIOS_TXT.eyebrow)}</Eyebrow>
+        <Titulo key={lang} className={s.accesoriosTitulo} lineas={ACCESORIOS_TXT.titulo[lang]} />
+        <Reveal as="p" delay={0.1} className={s.accesoriosDestacado}>
+          {t(ACCESORIOS_TXT.destacado)}
+        </Reveal>
+        <Reveal as="p" delay={0.15} className={s.accesoriosParrafo}>
+          {t(ACCESORIOS_TXT.texto)}
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className={s.accesoriosFrase}>
+            {ACCESORIOS_TXT.frase[lang].map((l) => (
+              <span key={l}>{l}</span>
+            ))}
+          </p>
+        </Reveal>
+        <Reveal delay={0.25} className={s.accesoriosLinks}>
+          <a href="#cat-yerba">
+            {t(ACCESORIOS_TXT.verYerba)} <Icono nombre="flecha" size={18} />
+          </a>
+          <a href={comprarHref(lang)} target="_blank" rel="noreferrer">
+            {t(UI.comprar)} <Icono nombre="flecha" size={18} />
+          </a>
+        </Reveal>
+      </div>
+
+      <div className={s.carrusel}>
+        <button type="button" className={`${s.flecha} ${s.flechaIzq}`} onClick={() => mover(-1)} disabled={bordes.inicio} aria-label="Anterior">
+          <Icono nombre="flecha" size={22} />
+        </button>
+        <div ref={pista} className={s.carruselPista} onScroll={alScrollear}>
+          {ACCESORIOS.map((p, i) => {
+            const nombre = `${t(p.nombre)}${p.detalle ? ` ${t(p.detalle)}` : ''}`;
+            return (
+              <motion.article
+                key={p.id}
+                className={s.tarjeta}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-5% 0px' }}
+                transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: EASE }}
+              >
+                <motion.div className={s.tarjetaImg} whileHover={{ scale: 1.06, rotate: -2 }} transition={{ type: 'spring', stiffness: 200, damping: 16 }}>
+                  <Image src={p.imagenes[0].src} alt={nombre} fill sizes="(max-width: 700px) 70vw, 260px" />
+                </motion.div>
+                <h4 className={s.tarjetaNombre}>{t(p.nombre)}</h4>
+                {p.detalle && <p className={s.tarjetaDetalle}>{t(p.detalle)}</p>}
+                <a className={s.tarjetaComprar} href={comprarHref(lang, nombre)} target="_blank" rel="noreferrer">
+                  {t(UI.comprarProducto)}
+                </a>
+              </motion.article>
+            );
+          })}
+        </div>
+        <button type="button" className={`${s.flecha} ${s.flechaDer}`} onClick={() => mover(1)} disabled={bordes.fin} aria-label="Siguiente">
+          <Icono nombre="flecha" size={22} />
+        </button>
+      </div>
+
+      {/* La detección la hace el figure; el recorte va adentro para que no quede con área visible cero. */}
+      <motion.figure className={s.accesoriosFoto} initial="oculto" whileInView="visible" viewport={{ once: true, margin: '-10% 0px' }}>
+        <motion.div
+          className={s.accesoriosFotoImg}
+          variants={{ oculto: { clipPath: 'inset(0% 0% 0% 100%)' }, visible: { clipPath: 'inset(0% 0% 0% 0%)' } }}
+          transition={{ duration: 1.3, ease: EASE }}
+        >
+          <Image src="/landing/peluche-nene.webp" alt="" fill sizes="(max-width: 1100px) 100vw, 28vw" />
+        </motion.div>
+      </motion.figure>
+    </div>
   );
 }

@@ -126,6 +126,8 @@ export type Producto = {
   specs: Spec[];
   perfil?: Perfil[];
   chips?: T[];
+  // Presentaciones del mismo producto (la yerba viene en 250 g y 500 g).
+  tamanos?: T[];
 };
 
 export type Categoria = {
@@ -138,7 +140,7 @@ export type Categoria = {
   certificada?: boolean;
 };
 
-// Categorías como en el catálogo: cada una con su foto de portada.
+// Categorías como en el catálogo. La yerba se muestra completa; el resto va al carrusel.
 export const CATEGORIAS: Categoria[] = [
   {
     id: 'yerba',
@@ -148,9 +150,12 @@ export const CATEGORIAS: Categoria[] = [
     certificada: true,
     productos: [
       {
-        id: 'yerba-500',
+        id: 'yerba',
         nombre: { en: 'Yerba Mate', es: 'Yerba Mate' },
-        detalle: { en: '500 g', es: '500 g' },
+        tamanos: [
+          { en: '500 g', es: '500 g' },
+          { en: '250 g', es: '250 g' },
+        ],
         descripcion: {
           en: 'Yerba mate with stems, naturally aged for 18 months and produced without added chemicals. Free from added flavorings and preservatives, it offers an authentic, smooth and long-lasting flavor, preserving the pure tradition of Argentine mate.',
           es: 'Yerba mate con palo, estacionada naturalmente durante 18 meses y elaborada sin agregado de químicos. Sin saborizantes ni conservantes, ofrece un sabor auténtico, suave y duradero, que preserva la tradición pura del mate argentino.',
@@ -159,20 +164,6 @@ export const CATEGORIAS: Categoria[] = [
         fondo: 'transparente',
         specs: SPECS_YERBA,
         perfil: PERFIL_YERBA,
-        chips: CERTS_CHIPS,
-      },
-      {
-        id: 'yerba-250',
-        nombre: { en: 'Yerba Mate', es: 'Yerba Mate' },
-        detalle: { en: '250 g', es: '250 g' },
-        descripcion: {
-          en: 'The same yerba mate in a smaller size. Perfect to try Al Galope for the first time, or to take on the road.',
-          es: 'La misma yerba en un tamaño más chico. Ideal para probar Al Galope por primera vez o para llevar de viaje.',
-        },
-        imagenes: [{ src: '/landing/caja.png' }],
-        fondo: 'transparente',
-        specs: [SPECS_YERBA[0], SPECS_YERBA[1], SPECS_YERBA[5], SPECS_YERBA[6]],
-        perfil: PERFIL_YERBA.slice(0, 2),
         chips: CERTS_CHIPS,
       },
     ],
@@ -281,6 +272,25 @@ export const CATEGORIAS: Categoria[] = [
     ],
   },
 ];
+
+export const YERBA = CATEGORIAS[0];
+export const ACCESORIOS = CATEGORIAS.slice(1).flatMap((c) => c.productos);
+
+// Bloque del carrusel de mates y peluches (estilo Yerba Mate Origen).
+export const ACCESORIOS_TXT = {
+  eyebrow: { en: 'Mates & plush toys', es: 'Mates y peluches' } as T,
+  titulo: { en: ['Argentine tradition,', 'in your hands.'], es: ['La tradición argentina,', 'en tus manos.'] },
+  destacado: {
+    en: 'Hand-chiseled mates made to last, and our famous mate-shaped plush.',
+    es: 'Mates cincelados a mano, hechos para durar, y nuestro famoso peluche con forma de mate.',
+  } as T,
+  texto: {
+    en: 'The perfect companions for your Al Galope yerba, to enjoy at home or to give as a gift anywhere in the world.',
+    es: 'Los compañeros ideales para tu yerba Al Galope, para disfrutar en casa o regalar en cualquier parte del mundo.',
+  } as T,
+  frase: { en: ['Wherever there is a mate,', 'there is Argentina.'], es: ['Donde hay un mate,', 'hay Argentina.'] },
+  verYerba: { en: 'Discover our yerba', es: 'Conocé nuestra yerba' } as T,
+};
 
 export const CERTIFICACIONES = {
   eyebrow: { en: 'Certified quality', es: 'Calidad certificada' } as T,
