@@ -582,7 +582,7 @@
 
 .heroCaja {
   position: relative;
-  aspect-ratio: 339 / 566;
+  aspect-ratio: 412 / 668;
   transform-style: preserve-3d;
 }
 
@@ -848,6 +848,64 @@
   padding-top: clamp(40px, 6vw, 80px);
 }
 
+.portada {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(260px, 38vw, 440px);
+  margin-bottom: clamp(16px, 3vw, 32px);
+  border-radius: 32px;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  text-align: center;
+}
+
+.portadaImg {
+  position: absolute;
+  inset: -14% 0;
+  z-index: -2;
+}
+
+.portadaImg img {
+  object-fit: cover;
+}
+
+.portadaVelo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(20, 33, 31, 0.15) 0%, rgba(20, 33, 31, 0.55) 100%);
+}
+
+.portadaTexto {
+  width: 100%;
+  padding: 28px 20px;
+}
+
+.portadaTitulo {
+  margin: 0;
+  font-family: var(--font-label), sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5.6vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+}
+
+.portadaCaballos {
+  height: clamp(44px, 6vw, 70px);
+  max-width: 420px;
+  margin: 10px auto;
+}
+
+.portadaTexto p {
+  margin: 0;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
 .categoriaTitulo {
   position: relative;
   display: flex;
@@ -906,8 +964,10 @@
     linear-gradient(160deg, var(--petroleo-claro), var(--hondo));
 }
 
-.fondo_blanco {
-  background: #fff;
+.fondo_claro {
+  background:
+    radial-gradient(circle at 50% 42%, #ffffff 0%, rgba(255, 255, 255, 0) 62%),
+    linear-gradient(160deg, #f4f5f2, var(--papel-2));
   box-shadow: inset 0 0 0 1px rgba(24, 38, 36, 0.06);
 }
 
@@ -949,8 +1009,9 @@
   filter: drop-shadow(0 40px 40px rgba(0, 0, 0, 0.45));
 }
 
-.fondo_blanco .productoImgCapa {
-  inset: 6% 10%;
+.fondo_claro .productoImgCapa {
+  inset: 12% 14%;
+  filter: drop-shadow(0 30px 30px rgba(24, 38, 36, 0.25));
 }
 
 .productoImgCapa img {
@@ -1205,6 +1266,23 @@
 
 /* ---------- Contacto ---------- */
 
+.contacto {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.contactoFondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.28;
+}
+
+.contactoFondo img {
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+
 .contactoGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1424,7 +1502,24 @@ a.canal:hover .canalFlecha {
 
   .reelsCabecera,
   .historia,
-  .contactoGrid {
+  .contacto {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.contactoFondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.28;
+}
+
+.contactoFondo img {
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+
+.contactoGrid {
     grid-template-columns: 1fr;
   }
 
@@ -1477,6 +1572,11 @@ a.canal:hover .canalFlecha {
 
   .specs {
     grid-template-columns: 1fr;
+  }
+
+  .productoDetalle {
+    display: table;
+    margin: 10px 0 0;
   }
 
   .certsLista {

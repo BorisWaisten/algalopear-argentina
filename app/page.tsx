@@ -8,8 +8,8 @@ const etiqueta = Oswald({ subsets: ['latin'], weight: ['400', '500'], variable: 
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: 'Al Galope Yerba Mate | Premium Argentine Yerba Mate',
-  description: 'Tradition, natural aging and export-grade quality, for the most demanding palates. Premium yerba mate from Misiones, Argentina.',
+  title: 'Al Galope Yerba Mate | Argentine Yerba Mate from Misiones',
+  description: 'Tradition, natural aging and export-grade quality, for the most demanding palates. Yerba mate from Misiones, Argentina.',
   // Borrador: no indexar hasta publicar.
   robots: { index: false, follow: false },
 };

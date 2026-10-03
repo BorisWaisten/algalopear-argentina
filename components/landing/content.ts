@@ -35,7 +35,7 @@ export const UI = {
 };
 
 export const HERO = {
-  eyebrow: { en: 'Premium Yerba Mate · Misiones, Argentina', es: 'Yerba mate premium · Misiones, Argentina' } as T,
+  eyebrow: { en: 'Yerba Mate · Misiones, Argentina', es: 'Yerba mate · Misiones, Argentina' } as T,
   lineas: {
     en: ['Tradition, natural aging', '& export-grade quality.'],
     es: ['Tradición, estacionamiento natural', 'y calidad de exportación.'],
@@ -78,15 +78,16 @@ export const HISTORIA = {
 export type Spec = { icono: string; label: T; valor: T };
 export type Perfil = { label: T; nivel: number; valor: T };
 
-// Atributos "marketineros" de la ficha técnica en inglés (última versión). La composición
+// Cualidades de la ficha técnica en inglés (última versión) y del catálogo. La composición
 // de la molienda y el proceso de producción no se publican: son fórmula y secreto industrial.
 const SPECS_YERBA: Spec[] = [
-  { icono: 'hoja', label: { en: 'Flavor', es: 'Sabor' }, valor: { en: 'Smooth, balanced and long-lasting', es: 'Suave, equilibrado y duradero' } },
-  { icono: 'brillo', label: { en: 'Aroma', es: 'Aroma' }, valor: { en: 'Herbal and roasted, from its natural aging', es: 'Herbal y tostado, por su estacionamiento natural' } },
-  { icono: 'reloj', label: { en: 'Aging', es: 'Estacionamiento' }, valor: { en: 'Naturally aged for 18+ months', es: 'Natural, más de 18 meses' } },
-  { icono: 'escudo', label: { en: 'Pure', es: 'Pura' }, valor: { en: 'No additives, flavorings or preservatives', es: 'Sin aditivos, saborizantes ni conservantes' } },
-  { icono: 'medalla', label: { en: 'Quality', es: 'Calidad' }, valor: { en: 'Premium selection, with stems', es: 'Selección premium, con palo' } },
-  { icono: 'pin', label: { en: 'Origin', es: 'Origen' }, valor: { en: 'Misiones, Argentina', es: 'Misiones, Argentina' } },
+  { icono: 'hoja', label: { en: 'Ingredients', es: 'Ingredientes' }, valor: { en: '100% yerba mate with stems, Ilex paraguariensis leaves', es: '100% yerba mate con palo, hojas de Ilex paraguariensis' } },
+  { icono: 'taza', label: { en: 'Flavor', es: 'Sabor' }, valor: { en: 'Smooth, balanced, with low acidity and a characteristic long-lasting taste', es: 'Suave, equilibrado, de baja acidez y con un sabor duradero característico' } },
+  { icono: 'aroma', label: { en: 'Aroma', es: 'Aroma' }, valor: { en: 'Herbal, roasted, characteristic of its natural aging process', es: 'Herbal y tostado, propio de su estacionamiento natural' } },
+  { icono: 'paleta', label: { en: 'Color', es: 'Color' }, valor: { en: 'Characteristic dry green with yellowish and woody hues', es: 'Verde seco característico, con matices amarillentos y amaderados' } },
+  { icono: 'filtro', label: { en: 'Low dust content', es: 'Bajo contenido de polvo' }, valor: { en: 'Carefully milled for a cleaner, smoother brewing experience', es: 'Molida con cuidado para un mate más limpio y suave' } },
+  { icono: 'escudo', label: { en: 'Low acidity', es: 'Baja acidez' }, valor: { en: 'Does not cause acidity, enhanced by a prolonged natural aging', es: 'No genera acidez, gracias a un estacionamiento natural prolongado' } },
+  { icono: 'reloj', label: { en: 'Aging', es: 'Estacionamiento' }, valor: { en: 'Naturally aged for more than 18 months', es: 'Natural, más de 18 meses' } },
 ];
 
 // Perfil de la yerba: niveles de 1 a 5 para mostrar de un vistazo que es de baja acidez.
@@ -97,85 +98,102 @@ const PERFIL_YERBA: Perfil[] = [
   { label: { en: 'Lasting flavor', es: 'Duración del sabor' }, nivel: 5, valor: { en: 'High', es: 'Alta' } },
 ];
 
+const CERTS_CHIPS: T[] = [
+  { en: 'Gluten free', es: 'Sin TACC' },
+  { en: 'FDA', es: 'FDA' },
+  { en: 'Halal', es: 'Halal' },
+];
+
+const mate = (material: T, estilo: T, tamano: T, incluye?: T): Spec[] => [
+  { icono: 'material', label: { en: 'Material', es: 'Material' }, valor: material },
+  { icono: 'medalla', label: { en: 'Style', es: 'Estilo' }, valor: estilo },
+  { icono: 'regla', label: { en: 'Size', es: 'Tamaño' }, valor: tamano },
+  ...(incluye ? [{ icono: 'brillo', label: { en: 'Includes', es: 'Incluye' }, valor: incluye }] : []),
+];
+
+const CUERO: T = { en: 'Leather', es: 'Cuero' };
+const IMPERIAL: T = { en: 'Imperial', es: 'Imperial' };
+const GRANDE: T = { en: 'Large', es: 'Grande' };
+const BOMBILLA_ALPACA: T = { en: 'Chiseled alpaca straw', es: 'Bombilla cincelada de alpaca' };
+
 export type Producto = {
   id: string;
   nombre: T;
   detalle?: T;
   descripcion: T;
   imagenes: { src: string; label?: T }[];
-  fondo: 'transparente' | 'blanco' | 'foto';
+  fondo: 'transparente' | 'claro' | 'foto';
   specs: Spec[];
   perfil?: Perfil[];
   chips?: T[];
 };
 
-// Las certificaciones se muestran debajo de la categoría que certifican (el alimento).
-export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto[]; certificada?: boolean }[] = [
+export type Categoria = {
+  id: string;
+  titulo: T;
+  bajada: T;
+  portada: string;
+  productos: Producto[];
+  // Las certificaciones se muestran debajo de la categoría que certifican (el alimento).
+  certificada?: boolean;
+};
+
+// Categorías como en el catálogo: cada una con su foto de portada.
+export const CATEGORIAS: Categoria[] = [
   {
     id: 'yerba',
-    titulo: { en: 'Yerba Mate', es: 'Yerba Mate' },
-    bajada: { en: 'Our premium selection, aged slowly.', es: 'Nuestra selección premium, estacionada sin apuro.' },
+    titulo: { en: 'Argentine Yerba Mate', es: 'Yerba Mate Argentina' },
+    bajada: { en: 'Naturally aged, with nothing added.', es: 'Estacionada naturalmente, sin nada agregado.' },
+    portada: '/landing/pampa-atardecer.webp',
     certificada: true,
     productos: [
       {
         id: 'yerba-500',
-        nombre: { en: 'Premium Yerba Mate', es: 'Yerba Mate Premium' },
+        nombre: { en: 'Yerba Mate', es: 'Yerba Mate' },
         detalle: { en: '500 g', es: '500 g' },
         descripcion: {
-          en: 'Premium yerba mate with stems, naturally aged for 18 months and produced without added chemicals. It offers an authentic, smooth and long-lasting flavor, preserving the pure tradition of Argentine mate.',
-          es: 'Yerba mate elaborada con palo, de selección premium, con bajo contenido de polvo. No genera acidez y es amable con el sistema digestivo. Se distingue por su sabor auténtico, noble y duradero.',
+          en: 'Yerba mate with stems, naturally aged for 18 months and produced without added chemicals. Free from added flavorings and preservatives, it offers an authentic, smooth and long-lasting flavor, preserving the pure tradition of Argentine mate.',
+          es: 'Yerba mate con palo, estacionada naturalmente durante 18 meses y elaborada sin agregado de químicos. Sin saborizantes ni conservantes, ofrece un sabor auténtico, suave y duradero, que preserva la tradición pura del mate argentino.',
         },
         imagenes: [{ src: '/landing/caja.png' }],
         fondo: 'transparente',
         specs: SPECS_YERBA,
         perfil: PERFIL_YERBA,
-        chips: [
-          { en: 'Gluten free', es: 'Sin TACC' },
-          { en: 'FDA', es: 'FDA' },
-          { en: 'Halal', es: 'Halal' },
-        ],
+        chips: CERTS_CHIPS,
       },
       {
         id: 'yerba-250',
-        nombre: { en: 'Premium Yerba Mate', es: 'Yerba Mate Premium' },
+        nombre: { en: 'Yerba Mate', es: 'Yerba Mate' },
         detalle: { en: '250 g', es: '250 g' },
         descripcion: {
-          en: 'The same premium selection in a smaller size. Perfect to try Al Galope for the first time, or to take on the road.',
-          es: 'La misma selección premium en un tamaño más chico. Ideal para probar Al Galope por primera vez o para llevar de viaje.',
+          en: 'The same yerba mate in a smaller size. Perfect to try Al Galope for the first time, or to take on the road.',
+          es: 'La misma yerba en un tamaño más chico. Ideal para probar Al Galope por primera vez o para llevar de viaje.',
         },
         imagenes: [{ src: '/landing/caja.png' }],
         fondo: 'transparente',
-        specs: SPECS_YERBA.slice(0, 4),
+        specs: [SPECS_YERBA[0], SPECS_YERBA[1], SPECS_YERBA[5], SPECS_YERBA[6]],
         perfil: PERFIL_YERBA.slice(0, 2),
-        chips: [
-          { en: 'Gluten free', es: 'Sin TACC' },
-          { en: 'FDA', es: 'FDA' },
-          { en: 'Halal', es: 'Halal' },
-        ],
+        chips: CERTS_CHIPS,
       },
     ],
   },
   {
-    id: 'accesorios',
-    titulo: { en: 'Mates & accessories', es: 'Mates y accesorios' },
-    bajada: { en: 'Handcrafted mates and our famous plush.', es: 'Mates artesanales y nuestro famoso peluche.' },
+    id: 'mates',
+    titulo: { en: 'Argentine Mate', es: 'Mates Argentinos' },
+    bajada: { en: 'Handcrafted mates, made to last.', es: 'Mates artesanales, hechos para durar.' },
+    portada: '/landing/caballos-campo.webp',
     productos: [
       {
         id: 'mate-imperial',
-        nombre: { en: 'Imperial Mate', es: 'Mate Imperial' },
+        nombre: { en: 'Argentine Imperial Mate', es: 'Mate Imperial Argentino' },
         detalle: { en: '+ imperial straw', es: '+ bombilla imperial' },
         descripcion: {
-          en: 'Hand-chiseled, with an alpaca silver rim and decorative engravings. Includes a chiseled alpaca straw.',
+          en: 'Hand-chiseled, with an alpaca rim and decorative engravings. Includes a chiseled alpaca straw.',
           es: 'Cincelado a mano, con viñeta de alpaca y grabados decorativos. Incluye bombilla cincelada de alpaca.',
         },
-        imagenes: [{ src: '/landing/mate-imperial.jpg' }],
-        fondo: 'blanco',
-        specs: [
-          { icono: 'material', label: { en: 'Material', es: 'Material' }, valor: { en: 'Leather', es: 'Cuero' } },
-          { icono: 'medalla', label: { en: 'Style', es: 'Estilo' }, valor: { en: 'Imperial', es: 'Imperial' } },
-          { icono: 'regla', label: { en: 'Size', es: 'Tamaño' }, valor: { en: 'Large', es: 'Grande' } },
-          { icono: 'brillo', label: { en: 'Includes', es: 'Incluye' }, valor: { en: 'Chiseled alpaca straw', es: 'Bombilla cincelada de alpaca' } },
-        ],
+        imagenes: [{ src: '/landing/mate-imperial.png' }],
+        fondo: 'claro',
+        specs: mate(CUERO, IMPERIAL, GRANDE, BOMBILLA_ALPACA),
       },
       {
         id: 'mate-pampa',
@@ -185,14 +203,9 @@ export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto
           en: 'Hand-chiseled, with an alpaca top rim decorated with beads and an alpaca base.',
           es: 'Cincelado a mano, con viñeta superior de alpaca decorada con bolitas y base también de alpaca.',
         },
-        imagenes: [{ src: '/landing/mate-pampa.jpg' }],
-        fondo: 'blanco',
-        specs: [
-          { icono: 'material', label: { en: 'Material', es: 'Material' }, valor: { en: 'Leather', es: 'Cuero' } },
-          { icono: 'medalla', label: { en: 'Style', es: 'Estilo' }, valor: { en: 'Imperial', es: 'Imperial' } },
-          { icono: 'regla', label: { en: 'Size', es: 'Tamaño' }, valor: { en: 'Large', es: 'Grande' } },
-          { icono: 'brillo', label: { en: 'Includes', es: 'Incluye' }, valor: { en: 'Chiseled alpaca straw', es: 'Bombilla cincelada de alpaca' } },
-        ],
+        imagenes: [{ src: '/landing/mate-pampa.png' }],
+        fondo: 'claro',
+        specs: mate(CUERO, IMPERIAL, GRANDE, BOMBILLA_ALPACA),
       },
       {
         id: 'mate-clasico',
@@ -200,34 +213,26 @@ export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto
         detalle: { en: '+ classic straw', es: '+ bombilla clásica' },
         descripcion: {
           en: 'Premium stainless steel rim with a well-defined decorative design.',
-          es: 'Viñeta de acero inoxidable premium con un diseño decorativo bien definido.',
+          es: 'Viñeta de acero inoxidable de primera calidad, con un diseño decorativo bien definido.',
         },
-        imagenes: [{ src: '/landing/mate-clasico.jpg' }],
-        fondo: 'blanco',
-        specs: [
-          { icono: 'material', label: { en: 'Material', es: 'Material' }, valor: { en: 'Leather', es: 'Cuero' } },
-          { icono: 'medalla', label: { en: 'Style', es: 'Estilo' }, valor: { en: 'Imperial', es: 'Imperial' } },
-          { icono: 'regla', label: { en: 'Size', es: 'Tamaño' }, valor: { en: 'Large', es: 'Grande' } },
-        ],
+        imagenes: [{ src: '/landing/mate-clasico.png' }],
+        fondo: 'claro',
+        specs: mate(CUERO, IMPERIAL, GRANDE),
       },
       {
         id: 'mate-algarrobo',
-        nombre: { en: 'Carob Wood Edition Mate', es: 'Mate Edición Algarrobo' },
+        nombre: { en: 'Carob (Algarrobo) Mate Edition', es: 'Mate Edición Algarrobo' },
         detalle: { en: '+ classic straw', es: '+ bombilla clásica' },
         descripcion: {
-          en: 'Polished carob (algarrobo) wood with a first-quality stainless steel rim.',
+          en: 'Polished carob wood with a first-quality stainless steel rim.',
           es: 'Madera de algarrobo pulida, con viñeta de acero inoxidable de primera calidad.',
         },
         imagenes: [
-          { src: '/landing/mate-algarrobo-claro.jpg', label: { en: 'Light brown', es: 'Marrón claro' } },
-          { src: '/landing/mate-algarrobo-oscuro.jpg', label: { en: 'Dark brown', es: 'Marrón oscuro' } },
+          { src: '/landing/mate-algarrobo-claro.png', label: { en: 'Light brown', es: 'Marrón claro' } },
+          { src: '/landing/mate-algarrobo-oscuro.png', label: { en: 'Dark brown', es: 'Marrón oscuro' } },
         ],
-        fondo: 'blanco',
-        specs: [
-          { icono: 'material', label: { en: 'Material', es: 'Material' }, valor: { en: 'Carob tree wood', es: 'Madera de algarrobo' } },
-          { icono: 'medalla', label: { en: 'Style', es: 'Estilo' }, valor: { en: 'Imperial', es: 'Imperial' } },
-          { icono: 'regla', label: { en: 'Size', es: 'Tamaño' }, valor: { en: 'Medium', es: 'Mediano' } },
-        ],
+        fondo: 'claro',
+        specs: mate({ en: 'Carob tree wood', es: 'Madera de algarrobo' }, IMPERIAL, { en: 'Medium', es: 'Mediano' }),
       },
       {
         id: 'mate-vidrio',
@@ -236,17 +241,21 @@ export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto
           en: 'A clean, classic glass mate to see your yerba at its best. Straw not included for now.',
           es: 'Un mate de vidrio clásico para ver tu yerba en su mejor versión. Por el momento, sin bombilla.',
         },
-        imagenes: [{ src: '/landing/mate-vidrio.webp' }],
-        fondo: 'foto',
-        specs: [
-          { icono: 'material', label: { en: 'Material', es: 'Material' }, valor: { en: 'Glass', es: 'Vidrio' } },
-          { icono: 'medalla', label: { en: 'Style', es: 'Estilo' }, valor: { en: 'Classic', es: 'Clásico' } },
-          { icono: 'regla', label: { en: 'Size', es: 'Tamaño' }, valor: { en: 'Small', es: 'Pequeño' } },
-        ],
+        imagenes: [{ src: '/landing/mate-vidrio.png' }],
+        fondo: 'claro',
+        specs: mate({ en: 'Glass', es: 'Vidrio' }, { en: 'Classic', es: 'Clásico' }, { en: 'Small', es: 'Pequeño' }),
       },
+    ],
+  },
+  {
+    id: 'peluches',
+    titulo: { en: 'Mate Plush Toys', es: 'Peluches Mate' },
+    bajada: { en: 'Our best seller, perfect for gifting.', es: 'Nuestro éxito, ideal para regalar.' },
+    portada: '/landing/peluche-nene.webp',
+    productos: [
       {
         id: 'peluche-20',
-        nombre: { en: 'Mate Plush', es: 'Peluche Mate' },
+        nombre: { en: 'Mate-Shaped Plush Toy', es: 'Peluche con forma de mate' },
         detalle: { en: '20 cm', es: '20 cm' },
         descripcion: {
           en: 'A fun and adorable plush inspired by the traditional Argentine mate. Its soft and charming design makes it a perfect companion for playing, decorating, or gifting.',
@@ -259,7 +268,7 @@ export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto
       },
       {
         id: 'peluche-16',
-        nombre: { en: 'Mate Plush', es: 'Peluche Mate' },
+        nombre: { en: 'Mate-Shaped Plush Toy', es: 'Peluche con forma de mate' },
         detalle: { en: '16 cm', es: '16 cm' },
         descripcion: {
           en: 'The little one of the family. Same charm, perfect size for a gift.',

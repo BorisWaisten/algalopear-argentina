@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTrans
 
 import { CATEGORIAS, CERTIFICACIONES, UI, type Producto } from './content';
 import s from './landing.module.css';
-import { EASE, Eyebrow, Icono, Reveal, Titulo, comprarHref, useLang } from './ui';
+import { Caballos, EASE, Eyebrow, Icono, Reveal, Titulo, comprarHref, useLang } from './ui';
 
 const TITULO = {
   eyebrow: { en: 'Our products', es: 'Nuestros productos' },
@@ -37,21 +37,7 @@ export function Productos() {
 
         {CATEGORIAS.map((cat) => (
           <div key={cat.id} id={`cat-${cat.id}`} className={s.categoria}>
-            <div className={s.categoriaTitulo}>
-              <Reveal y={16}>
-                <h3 className={s.display}>{t(cat.titulo)}</h3>
-              </Reveal>
-              <Reveal y={16} delay={0.1}>
-                <p>{t(cat.bajada)}</p>
-              </Reveal>
-              <motion.span
-                className={s.categoriaLinea}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: EASE }}
-              />
-            </div>
+            <PortadaCategoria titulo={t(cat.titulo)} bajada={t(cat.bajada)} imagen={cat.portada} />
             {cat.productos.map((p) => {
               indice += 1;
               return <FilaProducto key={p.id} producto={p} numero={indice} invertida={indice % 2 === 0} />;
@@ -228,5 +214,32 @@ function Certificaciones() {
         ))}
       </motion.ul>
     </div>
+  );
+}
+
+// Portada de categoría al estilo del catálogo: foto, título en mayúsculas y los caballitos.
+function PortadaCategoria({ titulo, bajada, imagen }: { titulo: string; bajada: string; imagen: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
+  return (
+    <motion.div
+      ref={ref}
+      className={s.portada}
+      initial={{ clipPath: 'inset(8% 4% 8% 4% round 32px)', opacity: 0 }}
+      whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', opacity: 1 }}
+      viewport={{ once: true, margin: '-10% 0px' }}
+      transition={{ duration: 1.2, ease: EASE }}
+    >
+      <motion.div className={s.portadaImg} style={{ y }}>
+        <Image src={imagen} alt="" fill sizes="(max-width: 1240px) 100vw, 1180px" />
+      </motion.div>
+      <div className={s.portadaVelo} />
+      <div className={s.portadaTexto}>
+        <h3 className={s.portadaTitulo}>{titulo}</h3>
+        <Caballos duracion={10} className={s.portadaCaballos} />
+        <p>{bajada}</p>
+      </div>
+    </motion.div>
   );
 }

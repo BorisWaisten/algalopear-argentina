@@ -18,6 +18,9 @@ export function Contacto() {
 
   return (
     <section id="contacto" className={`${s.section} ${s.oscura} ${s.contacto}`}>
+      <div className={s.contactoFondo}>
+        <Image src="/landing/catalogo-portada.webp" alt="" fill sizes="100vw" />
+      </div>
       <div className={`${s.wrap} ${s.contactoGrid}`}>
         <div>
           <Eyebrow claro>{t(CONTACTO_TXT.eyebrow)}</Eyebrow>

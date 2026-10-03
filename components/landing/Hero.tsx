@@ -123,7 +123,7 @@ export function Hero() {
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <Image src="/landing/caja.png" alt="Al Galope Premium Yerba Mate box" fill priority sizes="(max-width: 900px) 60vw, 30vw" />
+              <Image src="/landing/caja.png" alt="Al Galope Yerba Mate box" fill priority sizes="(max-width: 900px) 60vw, 30vw" />
               <motion.span className={s.heroCajaBrillo} style={{ left: brilloX }} />
             </motion.div>
           </motion.div>
