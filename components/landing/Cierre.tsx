@@ -170,7 +170,6 @@ export function Footer() {
         </div>
         <div className={s.footerLegal}>
           <span>© {new Date().getFullYear()} Al Galope Yerba Mate · {CONTACTO.web}</span>
-          <span>Web: Boris Waisten</span>
         </div>
       </div>
     </footer>
