@@ -18,22 +18,20 @@ export function Productos() {
 
   return (
     <section id="productos" className={`${s.section} ${s.clara} ${s.productos}`}>
-      <div className={s.wrap}>
+      {/*<div className={s.wrap}>
         <div className={s.productosCabecera}>
           <div>
             <Eyebrow>{t(TITULO.eyebrow)}</Eyebrow>
             <Titulo key={lang} className={`${s.display} ${s.h2}`} lineas={TITULO.lineas[lang]} />
           </div>
         </div>
-
       </div>
+      */}
 
       <div id="cat-yerba" className={s.categoria}>
         <PortadaCategoria titulo={t(YERBA.titulo)} bajada={t(YERBA.bajada)} imagen={YERBA.portada} />
         <FilaProducto producto={YERBA.productos[0]} />
-        <div className={s.wrap}>
-          <Certificaciones />
-        </div>
+        <Certificaciones />
       </div>
 
       <Accesorios />

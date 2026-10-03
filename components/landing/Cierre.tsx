@@ -12,7 +12,7 @@ export function Contacto() {
   const canales = [
     { icono: 'whatsapp', label: CONTACTO.whatsappLabel, href: whatsappHref(lang === 'en' ? 'Hi Al Galope!' : '¡Hola Al Galope!') },
     { icono: 'instagram', label: `@${CONTACTO.instagram}`, href: `https://instagram.com/${CONTACTO.instagram}` },
-    { icono: 'mail', label: CONTACTO.email, href: `mailto:${CONTACTO.email}` },
+    { icono: 'mail', label: CONTACTO.email.replace('@', '@\u200B'), href: `mailto:${CONTACTO.email}` },
     { icono: 'pin', label: t(CONTACTO.ciudad) },
   ];
 
