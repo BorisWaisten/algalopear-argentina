@@ -3,81 +3,9 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-import { CERTIFICACIONES, CONTACTO, CONTACTO_TXT, TIENDA, TIENDA_URL, UI } from './content';
+import { CONTACTO, CONTACTO_TXT, UI } from './content';
 import s from './landing.module.css';
-import { Caballos, EASE, Eyebrow, Guarda, Icono, Reveal, Titulo, comprarHref, useLang, whatsappHref } from './ui';
-
-export function Certificaciones() {
-  const { t } = useLang();
-  return (
-    <section className={s.certs}>
-      <div className={`${s.wrap} ${s.certsFila}`}>
-        <div>
-          <Eyebrow>{t(CERTIFICACIONES.eyebrow)}</Eyebrow>
-          <Reveal y={16}>
-            <h2 className={`${s.display} ${s.certsTitulo}`}>{t(CERTIFICACIONES.titulo)}</h2>
-          </Reveal>
-        </div>
-        <motion.ul
-          className={s.certsLista}
-          initial="oculto"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-10% 0px' }}
-          transition={{ staggerChildren: 0.15 }}
-        >
-          {CERTIFICACIONES.items.map((c) => (
-            <motion.li
-              key={c.src}
-              variants={{ oculto: { opacity: 0, scale: 0.5, rotate: -20 }, visible: { opacity: 1, scale: 1, rotate: 0 } }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-              whileHover={{ y: -6, rotate: 4 }}
-            >
-              <span className={s.certImg}>
-                <Image src={c.src} alt={t(c.label)} fill sizes="110px" />
-              </span>
-              {t(c.label)}
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
-    </section>
-  );
-}
-
-export function Tienda() {
-  const { lang, t } = useLang();
-  return (
-    <section id="tienda" className={`${s.section} ${s.tienda}`}>
-      <div className={s.tiendaFondo}>
-        <Image src="/landing/lifestyle-rio.webp" alt="" fill sizes="100vw" />
-      </div>
-      <div className={s.tiendaVelo} />
-      <div className={`${s.wrap} ${s.tiendaContenido}`}>
-        <Eyebrow claro>{t(TIENDA.eyebrow)}</Eyebrow>
-        <Titulo key={lang} className={`${s.display} ${s.h2} ${s.tiendaTitulo}`} lineas={TIENDA.titulo[lang]} />
-        <Reveal delay={0.2}>
-          <p className={s.lead}>{t(TIENDA.texto)}</p>
-        </Reveal>
-        <Reveal delay={0.3} className={s.tiendaCtas}>
-          <motion.a
-            href={comprarHref(lang)}
-            target="_blank"
-            rel="noreferrer"
-            className={`${s.btn} ${s.btnPlata} ${s.btnGrande}`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.96 }}
-          >
-            <Icono nombre={TIENDA_URL ? 'bolsa' : 'whatsapp'} size={18} />
-            {lang === 'en' ? 'Buy your Al Galope products' : 'Comprá tus productos Al Galope'}
-            <span className={s.btnBrillo} />
-          </motion.a>
-          {!TIENDA_URL && <span className={s.tiendaPronto}>{lang === 'en' ? 'Online store · coming soon' : 'Tienda online · próximamente'}</span>}
-        </Reveal>
-      </div>
-      <Caballos duracion={12} className={s.tiendaCaballos} />
-    </section>
-  );
-}
+import { EASE, Eyebrow, Guarda, Icono, Reveal, Titulo, navHref, useLang, whatsappHref } from './ui';
 
 export function Contacto() {
   const { lang, t } = useLang();
@@ -134,7 +62,7 @@ export function Contacto() {
 }
 
 export function Footer() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   return (
     <footer className={s.footer}>
       <div className={s.wrap}>
@@ -151,7 +79,7 @@ export function Footer() {
           </div>
           <nav className={s.footerNav}>
             {UI.nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`}>
+              <a key={n.id} {...navHref(n, lang)}>
                 {t(n.label)}
               </a>
             ))}

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 
-import { CATEGORIAS, UI, type Producto } from './content';
+import { CATEGORIAS, CERTIFICACIONES, UI, type Producto } from './content';
 import s from './landing.module.css';
 import { EASE, Eyebrow, Icono, Reveal, Titulo, comprarHref, useLang } from './ui';
 
@@ -56,6 +56,7 @@ export function Productos() {
               indice += 1;
               return <FilaProducto key={p.id} producto={p} numero={indice} invertida={indice % 2 === 0} />;
             })}
+            {cat.certificada && <Certificaciones />}
           </div>
         ))}
       </div>
@@ -140,6 +141,28 @@ function FilaProducto({ producto: p, numero, invertida }: { producto: Producto; 
         <Reveal as="p" y={16} delay={0.1} className={s.productoDesc}>
           {t(p.descripcion)}
         </Reveal>
+        {p.perfil && (
+          <div className={s.perfil}>
+            {p.perfil.map((pf, i) => (
+              <div key={pf.label.en} className={s.perfilFila}>
+                <span className={s.perfilLabel}>{t(pf.label)}</span>
+                <span className={s.perfilNiveles} aria-hidden>
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <motion.i
+                      key={n}
+                      className={n <= pf.nivel ? s.perfilOn : ''}
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 + i * 0.1 + n * 0.06, ease: EASE }}
+                    />
+                  ))}
+                </span>
+                <strong className={s.perfilValor}>{t(pf.valor)}</strong>
+              </div>
+            ))}
+          </div>
+        )}
         <motion.dl
           className={s.specs}
           initial="oculto"
@@ -172,5 +195,38 @@ function FilaProducto({ producto: p, numero, invertida }: { producto: Producto; 
         </Reveal>
       </div>
     </article>
+  );
+}
+
+function Certificaciones() {
+  const { t } = useLang();
+  return (
+    <div className={s.certs}>
+      <div>
+        <p className={s.certsEyebrow}>{t(CERTIFICACIONES.eyebrow)}</p>
+        <h4 className={`${s.display} ${s.certsTitulo}`}>{t(CERTIFICACIONES.titulo)}</h4>
+      </div>
+      <motion.ul
+        className={s.certsLista}
+        initial="oculto"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-10% 0px' }}
+        transition={{ staggerChildren: 0.15 }}
+      >
+        {CERTIFICACIONES.items.map((c) => (
+          <motion.li
+            key={c.src}
+            variants={{ oculto: { opacity: 0, scale: 0.5, rotate: -20 }, visible: { opacity: 1, scale: 1, rotate: 0 } }}
+            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+            whileHover={{ y: -6, rotate: 4 }}
+          >
+            <span className={s.certImg}>
+              <Image src={c.src} alt={t(c.label)} fill sizes="110px" />
+            </span>
+            {t(c.label)}
+          </motion.li>
+        ))}
+      </motion.ul>
+    </div>
   );
 }

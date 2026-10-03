@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 
 import { UI, type Lang } from './content';
 import s from './landing.module.css';
-import { EASE, comprarHref, useLang } from './ui';
+import { EASE, comprarHref, navHref, useLang } from './ui';
 
 export function Header() {
   const { lang, t } = useLang();
@@ -51,7 +51,7 @@ export function Header() {
 
           <nav className={s.navLinks} aria-label="Main">
             {UI.nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className={activo === n.id ? s.navActivo : ''}>
+              <a key={n.id} {...navHref(n, lang)} className={activo === n.id ? s.navActivo : ''}>
                 {t(n.label)}
                 {activo === n.id && <motion.span layoutId="nav-indicador" className={s.navIndicador} />}
               </a>
@@ -97,7 +97,7 @@ export function Header() {
               {UI.nav.map((n, i) => (
                 <motion.a
                   key={n.id}
-                  href={`#${n.id}`}
+                  {...navHref(n, lang)}
                   onClick={() => setAbierto(false)}
                   variants={{ oculto: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.6, ease: EASE }}

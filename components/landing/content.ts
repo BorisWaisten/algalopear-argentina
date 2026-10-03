@@ -26,7 +26,7 @@ export const UI = {
     { id: 'inicio', label: { en: 'Home', es: 'Inicio' } },
     { id: 'nosotros', label: { en: 'About', es: 'Nosotros' } },
     { id: 'productos', label: { en: 'Products', es: 'Productos' } },
-    { id: 'tienda', label: { en: 'Shop', es: 'Tienda' } },
+    { id: 'tienda', label: { en: 'Shop', es: 'Tienda' }, externo: true },
     { id: 'contacto', label: { en: 'Contact', es: 'Contacto' } },
   ],
   comprar: { en: 'Buy Al Galope', es: 'Comprar Al Galope' } as T,
@@ -43,35 +43,6 @@ export const HERO = {
   bajada: { en: 'For the most demanding palates.', es: 'Para los paladares más exigentes.' } as T,
   secundario: { en: 'Discover our yerba', es: 'Conocé nuestra yerba' } as T,
 };
-
-export const PILARES = [
-  {
-    icono: 'reloj',
-    numero: 18,
-    prefijo: '+',
-    titulo: { en: 'months of natural aging', es: 'meses de estacionamiento natural' },
-    texto: {
-      en: 'Rested in heated warehouses until it reaches its full, smooth flavor.',
-      es: 'Reposa en depósitos calefaccionados hasta alcanzar su sabor pleno y suave.',
-    },
-  },
-  {
-    icono: 'llama',
-    titulo: { en: 'Wood-fired, natural drying', es: 'Secado natural a leña' },
-    texto: {
-      en: 'No added chemicals, flavorings or preservatives. Just the native leaf.',
-      es: 'Sin químicos, saborizantes ni conservantes. Solo la hoja nativa.',
-    },
-  },
-  {
-    icono: 'hoja',
-    titulo: { en: 'Low dust, no acidity', es: 'Bajo polvo, sin acidez' },
-    texto: {
-      en: 'A balanced grind that is gentle on the digestive system.',
-      es: 'Una molienda equilibrada, amable con el sistema digestivo.',
-    },
-  },
-];
 
 export const REELS = {
   eyebrow: { en: 'From Misiones to the world', es: 'De Misiones al mundo' } as T,
@@ -101,79 +72,29 @@ export const HISTORIA = {
       'Combinamos métodos artesanales de cosecha con un riguroso control en cada etapa del proceso —desde la hoja nativa hasta el empaque final— para ofrecer un producto de baja acidez, estacionamiento natural y molienda equilibrada. Diseñada para trascender fronteras, Al Galope invita a descubrir la verdadera identidad de nuestra tierra en cada mate, satisfaciendo los estándares más altos del mundo.',
     ],
   },
-  cita: { en: 'Distinction lies in the details.', es: 'La distinción está en los detalles.' } as T,
   foro: { en: 'Santa Fe Business Forum 2026', es: 'Santa Fe Business Forum 2026' } as T,
-  datos: [
-    { valor: '100%', label: { en: 'Yerba mate with stems', es: 'Yerba mate con palo' } },
-    { valor: '3', label: { en: 'Certifications', es: 'Certificaciones' } },
-    { valor: '18+', label: { en: 'Months of aging', es: 'Meses de estacionamiento' } },
-  ],
-};
-
-export const PROCESO = {
-  eyebrow: { en: 'From the native leaf to your mate', es: 'De la hoja nativa a tu mate' } as T,
-  titulo: { en: ['Every step,', 'done slowly.'], es: ['Cada paso,', 'sin apuro.'] },
-  texto: {
-    en: 'The whole process is wood-fired. No shortcuts, no chemicals.',
-    es: 'Todo el proceso se hace con fuego a leña. Sin atajos, sin químicos.',
-  } as T,
-  pasos: [
-    {
-      titulo: { en: 'Harvest', es: 'Cosecha' },
-      texto: { en: 'Traditional harvesting of the native Ilex paraguariensis leaf.', es: 'Cosecha artesanal de la hoja nativa de Ilex paraguariensis.' },
-    },
-    {
-      titulo: { en: 'Zapecado', es: 'Zapecado' },
-      texto: { en: "The leaf's first contact with fire seals its natural properties.", es: 'El primer contacto de la hoja con el fuego sella sus propiedades.' },
-    },
-    {
-      titulo: { en: 'Pre-drying', es: 'Presecado' },
-      texto: { en: 'The green leaf finishes drying, gently and evenly.', es: 'Se termina de secar la hoja verde, de forma pareja.' },
-    },
-    {
-      titulo: { en: 'Belt drying', es: 'Secado a cintas' },
-      texto: {
-        en: 'Six hours between 100 °C and 60 °C to dry the stem and balance the moisture of the leaf.',
-        es: 'Seis horas entre 100 °C y 60 °C para secar el palo y equilibrar la humedad de la hoja.',
-      },
-    },
-    {
-      titulo: { en: 'Canchado', es: 'Canchado' },
-      texto: { en: 'The dried leaf is chopped into "yerba canchada".', es: 'La hoja seca se pica y queda como yerba canchada.' },
-    },
-    {
-      titulo: { en: '18+ months of aging', es: '+18 meses de estacionamiento' },
-      texto: {
-        en: 'Stored in heated warehouses until it reaches the standard we look for.',
-        es: 'Se guarda en depósitos calefaccionados hasta llegar al estándar que buscamos.',
-      },
-    },
-    {
-      titulo: { en: 'Milling & packing', es: 'Molienda y envasado' },
-      texto: { en: 'Blended to our signature grind and packed for the world.', es: 'Se mezcla con nuestra molienda y se envasa para el mundo.' },
-    },
-  ],
-  molienda: {
-    titulo: { en: 'Our grind', es: 'Nuestra molienda' } as T,
-    partes: [
-      { valor: 27, label: { en: 'Stems', es: 'Palo' } },
-      { valor: 23, label: { en: 'Coarse leaves', es: 'Hojas gruesas' } },
-      { valor: 43, label: { en: 'Fine leaves', es: 'Hojas finas' } },
-      { valor: 7, label: { en: 'Leaf powder', es: 'Polvo de hoja' } },
-    ],
-  },
 };
 
 export type Spec = { icono: string; label: T; valor: T };
+export type Perfil = { label: T; nivel: number; valor: T };
 
+// Atributos "marketineros" de la ficha técnica en inglés (última versión). La composición
+// de la molienda y el proceso de producción no se publican: son fórmula y secreto industrial.
 const SPECS_YERBA: Spec[] = [
-  { icono: 'hoja', label: { en: 'Ingredients', es: 'Ingredientes' }, valor: { en: '100% yerba mate with stems, Ilex paraguariensis leaves', es: '100% yerba mate con palo, hojas de Ilex paraguariensis' } },
-  { icono: 'medalla', label: { en: 'Quality', es: 'Calidad' }, valor: { en: 'Premium selection', es: 'Selección premium' } },
+  { icono: 'hoja', label: { en: 'Flavor', es: 'Sabor' }, valor: { en: 'Smooth, balanced and long-lasting', es: 'Suave, equilibrado y duradero' } },
+  { icono: 'brillo', label: { en: 'Aroma', es: 'Aroma' }, valor: { en: 'Herbal and roasted, from its natural aging', es: 'Herbal y tostado, por su estacionamiento natural' } },
   { icono: 'reloj', label: { en: 'Aging', es: 'Estacionamiento' }, valor: { en: 'Naturally aged for 18+ months', es: 'Natural, más de 18 meses' } },
-  { icono: 'llama', label: { en: 'Drying', es: 'Secado' }, valor: { en: 'Natural, without added chemicals', es: 'Natural, sin agregado de químicos' } },
-  { icono: 'brillo', label: { en: 'Characteristics', es: 'Atributos' }, valor: { en: 'Low dust · Does not cause acidity', es: 'Bajo polvo · No genera acidez' } },
-  { icono: 'escudo', label: { en: 'Additives', es: 'Aditivos' }, valor: { en: 'No flavorings or preservatives', es: 'Sin aditivos ni conservantes' } },
+  { icono: 'escudo', label: { en: 'Pure', es: 'Pura' }, valor: { en: 'No additives, flavorings or preservatives', es: 'Sin aditivos, saborizantes ni conservantes' } },
+  { icono: 'medalla', label: { en: 'Quality', es: 'Calidad' }, valor: { en: 'Premium selection, with stems', es: 'Selección premium, con palo' } },
   { icono: 'pin', label: { en: 'Origin', es: 'Origen' }, valor: { en: 'Misiones, Argentina', es: 'Misiones, Argentina' } },
+];
+
+// Perfil de la yerba: niveles de 1 a 5 para mostrar de un vistazo que es de baja acidez.
+const PERFIL_YERBA: Perfil[] = [
+  { label: { en: 'Acidity', es: 'Acidez' }, nivel: 1, valor: { en: 'Low', es: 'Baja' } },
+  { label: { en: 'Dust', es: 'Polvo' }, nivel: 1, valor: { en: 'Low', es: 'Bajo' } },
+  { label: { en: 'Smoothness', es: 'Suavidad' }, nivel: 5, valor: { en: 'High', es: 'Alta' } },
+  { label: { en: 'Lasting flavor', es: 'Duración del sabor' }, nivel: 5, valor: { en: 'High', es: 'Alta' } },
 ];
 
 export type Producto = {
@@ -184,14 +105,17 @@ export type Producto = {
   imagenes: { src: string; label?: T }[];
   fondo: 'transparente' | 'blanco' | 'foto';
   specs: Spec[];
+  perfil?: Perfil[];
   chips?: T[];
 };
 
-export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto[] }[] = [
+// Las certificaciones se muestran debajo de la categoría que certifican (el alimento).
+export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto[]; certificada?: boolean }[] = [
   {
     id: 'yerba',
     titulo: { en: 'Yerba Mate', es: 'Yerba Mate' },
     bajada: { en: 'Our premium selection, aged slowly.', es: 'Nuestra selección premium, estacionada sin apuro.' },
+    certificada: true,
     productos: [
       {
         id: 'yerba-500',
@@ -204,6 +128,7 @@ export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto
         imagenes: [{ src: '/landing/caja.png' }],
         fondo: 'transparente',
         specs: SPECS_YERBA,
+        perfil: PERFIL_YERBA,
         chips: [
           { en: 'Gluten free', es: 'Sin TACC' },
           { en: 'FDA', es: 'FDA' },
@@ -218,9 +143,10 @@ export const CATEGORIAS: { id: string; titulo: T; bajada: T; productos: Producto
           en: 'The same premium selection in a smaller size. Perfect to try Al Galope for the first time, or to take on the road.',
           es: 'La misma selección premium en un tamaño más chico. Ideal para probar Al Galope por primera vez o para llevar de viaje.',
         },
-        imagenes: [{ src: '/landing/caja-mano.webp' }],
-        fondo: 'foto',
+        imagenes: [{ src: '/landing/caja.png' }],
+        fondo: 'transparente',
         specs: SPECS_YERBA.slice(0, 4),
+        perfil: PERFIL_YERBA.slice(0, 2),
         chips: [
           { en: 'Gluten free', es: 'Sin TACC' },
           { en: 'FDA', es: 'FDA' },
@@ -355,15 +281,6 @@ export const CERTIFICACIONES = {
     { src: '/landing/cert-fda.png', label: { en: 'FDA', es: 'FDA' } },
     { src: '/landing/cert-halal.png', label: { en: 'Halal certified', es: 'Certificación Halal' } },
   ],
-};
-
-export const TIENDA = {
-  eyebrow: { en: 'Shop', es: 'Tienda' } as T,
-  titulo: { en: ['Buy your', 'Al Galope products.'], es: ['Comprá tus', 'productos Al Galope.'] },
-  texto: {
-    en: 'Our online store is on its way. In the meantime, order directly with us and we will take care of everything.',
-    es: 'Nuestra tienda online está en camino. Mientras tanto, pedí directo con nosotros y nos ocupamos de todo.',
-  } as T,
 };
 
 export const CONTACTO_TXT = {

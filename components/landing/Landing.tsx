@@ -2,11 +2,11 @@
 
 import { MotionConfig } from 'framer-motion';
 
-import { Certificaciones, Contacto, Footer, Tienda, WhatsAppFlotante } from './Cierre';
+import { Contacto, Footer, WhatsAppFlotante } from './Cierre';
 import { Header } from './Header';
 import { Hero } from './Hero';
-import { Historia, Proceso } from './Historia';
-import { Pilares, Reels } from './Marca';
+import { Historia } from './Historia';
+import { Reels } from './Marca';
 import { Productos } from './Productos';
 import s from './landing.module.css';
 import { LangProvider } from './ui';
@@ -19,13 +19,9 @@ export function Landing({ fontClassName }: { fontClassName: string }) {
           <Header />
           <main>
             <Hero />
-            <Pilares />
             <Reels />
             <Historia />
-            <Proceso />
             <Productos />
-            <Certificaciones />
-            <Tienda />
             <Contacto />
           </main>
           <Footer />

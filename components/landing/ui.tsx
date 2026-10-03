@@ -57,6 +57,11 @@ export function comprarHref(lang: Lang, producto?: string) {
   return whatsappHref(msg);
 }
 
+// El ítem "Tienda" del menú lleva a la compra (MercadoLibre o WhatsApp); el resto son anclas.
+export function navHref(item: { id: string; externo?: boolean }, lang: Lang) {
+  return item.externo ? { href: comprarHref(lang), target: '_blank', rel: 'noreferrer' } : { href: `#${item.id}` };
+}
+
 // ---------- Animaciones ----------
 
 export function Reveal({

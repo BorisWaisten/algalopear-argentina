@@ -688,59 +688,6 @@
   background: var(--plata);
 }
 
-/* ---------- Pilares ---------- */
-
-.pilares {
-  background: var(--hondo);
-  color: var(--plata);
-  padding-block: clamp(56px, 7vw, 90px);
-  border-bottom: 1px solid rgba(223, 229, 231, 0.08);
-}
-
-.pilaresGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(20px, 3vw, 48px);
-}
-
-.pilar {
-  padding-top: 26px;
-  border-top: 1px solid rgba(223, 229, 231, 0.18);
-}
-
-.pilarIcono {
-  display: inline-grid;
-  place-items: center;
-  width: 54px;
-  height: 54px;
-  margin-bottom: 20px;
-  border-radius: 50%;
-  border: 1px solid rgba(223, 229, 231, 0.35);
-  color: var(--plata);
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), transparent 70%);
-}
-
-.pilarTitulo {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.pilarNumero {
-  display: block;
-  font-size: 3.4rem;
-  line-height: 1;
-  margin-bottom: 4px;
-  background-image: linear-gradient(100deg, #9aa6a9 0%, #f6f8f9 22%, #b4bec1 40%, #ffffff 52%, #9aa6a9 70%, #e9eef0 85%, #9aa6a9 100%);
-}
-
-.pilar p {
-  margin: 0;
-  line-height: 1.6;
-  color: rgba(223, 229, 231, 0.65);
-}
-
 /* ---------- Reels ---------- */
 
 .reels {
@@ -766,7 +713,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(12px, 2vw, 24px);
-  padding-bottom: 80px;
 }
 
 .reel {
@@ -819,28 +765,20 @@
   align-items: center;
 }
 
-.historiaFotos {
+.historiaFoto {
   position: relative;
-  aspect-ratio: 4 / 5;
-}
-
-.historiaFotos figure {
-  position: absolute;
   margin: 0;
+  aspect-ratio: 583 / 664;
+  border-radius: 28px;
   overflow: hidden;
-  border-radius: var(--radio);
   box-shadow: 0 30px 70px rgba(24, 38, 36, 0.25);
 }
 
-.historiaFotos img {
+.historiaFoto img {
   object-fit: cover;
 }
 
-.historiaFotoGrande {
-  inset: 0 18% 8% 0;
-}
-
-.historiaFotoGrande figcaption {
+.historiaFoto figcaption {
   position: absolute;
   left: 16px;
   bottom: 16px;
@@ -854,218 +792,11 @@
   color: var(--petroleo);
 }
 
-.historiaFotoChica {
-  right: 0;
-  top: 8%;
-  width: 46%;
-  aspect-ratio: 16 / 10;
-  border: 6px solid var(--papel);
-}
-
-.historiaFotoTercera {
-  right: 6%;
-  bottom: 0;
-  width: 30%;
-  aspect-ratio: 9 / 16;
-  border: 6px solid var(--papel);
-}
-
 .parrafo {
   margin: 0 0 18px;
   font-size: 1.05rem;
   line-height: 1.75;
   color: var(--tinta-suave);
-}
-
-.cita {
-  position: relative;
-  margin: 34px 0;
-  padding-left: 54px;
-  font-family: var(--font-display), Georgia, serif;
-  font-style: italic;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-  line-height: 1.3;
-  color: var(--petroleo);
-}
-
-.citaMarca {
-  position: absolute;
-  left: 0;
-  top: -18px;
-  font-size: 4.6rem;
-  line-height: 1;
-  color: var(--plata-3);
-}
-
-.datos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 0;
-  padding-top: 26px;
-  border-top: 1px solid rgba(24, 38, 36, 0.14);
-}
-
-.datos dt {
-  font-size: clamp(2rem, 3.4vw, 2.8rem);
-  line-height: 1;
-}
-
-.datos dd {
-  margin: 8px 0 0;
-  font-size: 0.86rem;
-  color: var(--tinta-suave);
-}
-
-/* ---------- Proceso ---------- */
-
-.proceso {
-  background:
-    radial-gradient(ellipse 60% 50% at 0% 0%, rgba(50, 94, 118, 0.35), transparent 70%),
-    var(--petroleo);
-}
-
-.procesoGrid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(40px, 7vw, 110px);
-  align-items: start;
-  margin-bottom: 70px;
-}
-
-.procesoIntro {
-  position: sticky;
-  top: calc(var(--header-h) + 30px);
-}
-
-.molienda {
-  margin-top: 48px;
-  padding: 26px;
-  border-radius: var(--radio);
-  background: rgba(0, 0, 0, 0.18);
-  border: 1px solid rgba(223, 229, 231, 0.12);
-}
-
-.moliendaTitulo {
-  margin: 0 0 16px;
-  font-family: var(--font-label), sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--plata-2);
-}
-
-.moliendaBarra {
-  display: flex;
-  height: 14px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(223, 229, 231, 0.08);
-  gap: 2px;
-}
-
-.molienda0 {
-  background: #a68a5b;
-}
-
-.molienda1 {
-  background: #6f8f4e;
-}
-
-.molienda2 {
-  background: #a9c07a;
-}
-
-.molienda3 {
-  background: var(--plata-2);
-}
-
-.moliendaLeyenda {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 16px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.9rem;
-  color: rgba(223, 229, 231, 0.75);
-}
-
-.moliendaLeyenda li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.moliendaLeyenda i {
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-}
-
-.moliendaLeyenda strong {
-  color: #fff;
-}
-
-.pasos {
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0 0 0 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.pasosLinea {
-  position: absolute;
-  left: 27px;
-  top: 28px;
-  bottom: 28px;
-  width: 1.5px;
-  background: rgba(223, 229, 231, 0.12);
-}
-
-.pasosLinea span {
-  position: absolute;
-  inset: 0;
-  transform-origin: top;
-  background: linear-gradient(var(--plata), var(--plata-3));
-}
-
-.paso {
-  position: relative;
-  display: flex;
-  gap: 24px;
-  padding: 22px 24px 22px 0;
-}
-
-.pasoNumero {
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--petroleo);
-  border: 1px solid rgba(223, 229, 231, 0.4);
-  font-family: var(--font-label), sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  color: var(--plata);
-  z-index: 1;
-}
-
-.paso h3 {
-  margin: 8px 0 8px;
-  font-size: 1.45rem;
-  color: #fff;
-}
-
-.paso p {
-  margin: 0;
-  line-height: 1.65;
-  color: rgba(223, 229, 231, 0.68);
 }
 
 /* ---------- Productos ---------- */
@@ -1324,6 +1055,54 @@
   max-width: 52ch;
 }
 
+.perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 26px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(34, 54, 52, 0.06);
+  max-width: 460px;
+}
+
+.perfilFila {
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) auto 52px;
+  align-items: center;
+  gap: 14px;
+}
+
+.perfilLabel {
+  font-family: var(--font-label), sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.perfilNiveles {
+  display: flex;
+  gap: 4px;
+}
+
+.perfilNiveles i {
+  width: 22px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(34, 54, 52, 0.14);
+  transform-origin: left;
+}
+
+.perfilNiveles .perfilOn {
+  background: var(--petroleo);
+}
+
+.perfilValor {
+  font-size: 0.88rem;
+  text-align: right;
+}
+
 .specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1366,24 +1145,33 @@
   line-height: 1.4;
 }
 
-/* ---------- Certificaciones ---------- */
+/* ---------- Certificaciones (debajo de la yerba) ---------- */
 
 .certs {
-  background: var(--papel-2);
-  padding-block: clamp(60px, 8vw, 100px);
-}
-
-.certsFila {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 32px 60px;
+  gap: 28px 48px;
+  margin-top: clamp(16px, 3vw, 32px);
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(24, 38, 36, 0.08);
+}
+
+.certsEyebrow {
+  margin: 0 0 8px;
+  font-family: var(--font-label), sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--plata-3);
 }
 
 .certsTitulo {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
 }
 
 .certsLista {
@@ -1413,60 +1201,6 @@
 
 .certImg img {
   object-fit: contain;
-}
-
-/* ---------- Tienda ---------- */
-
-.tienda {
-  overflow: hidden;
-  color: var(--plata);
-  isolation: isolate;
-  padding-bottom: 0;
-}
-
-.tiendaFondo {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-
-.tiendaFondo img {
-  object-fit: cover;
-}
-
-.tiendaVelo {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg, rgba(20, 33, 31, 0.95) 0%, rgba(20, 33, 31, 0.8) 50%, rgba(20, 33, 31, 0.55) 100%);
-}
-
-.tiendaContenido {
-  padding-bottom: 40px;
-}
-
-.tiendaTitulo {
-  max-width: 14ch;
-}
-
-.tiendaCtas {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px 24px;
-  margin-top: 36px;
-}
-
-.tiendaPronto {
-  font-family: var(--font-label), sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--plata-2);
-}
-
-.tiendaCaballos {
-  height: clamp(80px, 12vw, 150px);
 }
 
 /* ---------- Contacto ---------- */
@@ -1688,25 +1422,18 @@ a.canal:hover .canalFlecha {
     font-size: 1.6rem;
   }
 
-  .pilaresGrid,
   .reelsCabecera,
   .historia,
-  .procesoGrid,
   .contactoGrid {
     grid-template-columns: 1fr;
   }
 
-  .procesoIntro {
-    position: static;
-  }
-
   .reelsGrid {
     grid-template-columns: 1fr 1fr;
-    padding-bottom: 40px;
   }
 
-  .historiaFotos {
-    max-width: 520px;
+  .historiaFoto {
+    max-width: 480px;
   }
 
   .producto {
@@ -1752,8 +1479,19 @@ a.canal:hover .canalFlecha {
     grid-template-columns: 1fr;
   }
 
-  .moliendaLeyenda {
-    grid-template-columns: 1fr;
+  .certsLista {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .certsLista li {
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .certImg {
+    width: 72px;
   }
 
   .footerGrid {
