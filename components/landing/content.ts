@@ -279,7 +279,6 @@ export const ACCESORIOS_TXT = {
     es: 'Los compañeros ideales para tu yerba Al Galope, para disfrutar en casa o regalar en cualquier parte del mundo.',
   } as T,
   frase: { en: ['Wherever there is a mate,', 'there is Argentina.'], es: ['Donde hay un mate,', 'hay Argentina.'] },
-  verYerba: { en: 'Discover our yerba', es: 'Conocé nuestra yerba' } as T,
 };
 
 export const CERTIFICACIONES = {

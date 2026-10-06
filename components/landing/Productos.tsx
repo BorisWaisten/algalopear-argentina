@@ -263,9 +263,6 @@ function Accesorios() {
           </p>
         </Reveal>
         <Reveal delay={0.25} className={s.accesoriosLinks}>
-          <a href="#cat-yerba">
-            {t(ACCESORIOS_TXT.verYerba)} <Icono nombre="flecha" size={18} />
-          </a>
           <a href={comprarHref(lang)} target="_blank" rel="noreferrer">
             {t(UI.comprar)} <Icono nombre="flecha" size={18} />
           </a>
