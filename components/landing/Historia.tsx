@@ -13,16 +13,28 @@ export function Historia() {
   return (
     <section id="nosotros" className={`${s.section} ${s.clara}`}>
       <div className={`${s.wrap} ${s.historia}`}>
-        <motion.figure
-          className={s.historiaFoto}
-          initial={{ clipPath: 'inset(100% 0% 0% 0% round 28px)' }}
-          whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 28px)' }}
-          viewport={{ once: true, margin: '-10% 0px' }}
-          transition={{ duration: 1.3, ease: EASE }}
-        >
-          <Image src="/landing/laila-forum.webp" alt="Al Galope at the Santa Fe Business Forum" fill sizes="(max-width: 900px) 90vw, 40vw" />
-          <figcaption>{t(HISTORIA.foro)}</figcaption>
-        </motion.figure>
+        <div className={s.historiaCollage}>
+          <motion.figure
+            className={s.historiaFoto}
+            initial={{ clipPath: 'inset(100% 0% 0% 0% round 28px)' }}
+            whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 28px)' }}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={{ duration: 1.3, ease: EASE }}
+          >
+            <Image src="/landing/forum-laila-mate.webp" alt="Laila sharing Al Galope yerba mate at the Santa Fe Business Forum" fill sizes="(max-width: 900px) 80vw, 34vw" />
+            <figcaption>{t(HISTORIA.foro)}</figcaption>
+          </motion.figure>
+
+          <motion.figure
+            className={s.historiaInset}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={{ duration: 1, delay: 0.6, ease: EASE }}
+          >
+            <Image src="/landing/forum-productos.webp" alt="Al Galope yerba mate, mate and plush on display" fill sizes="(max-width: 900px) 60vw, 26vw" />
+          </motion.figure>
+        </div>
 
         <div>
           <Eyebrow>{t(HISTORIA.eyebrow)}</Eyebrow>

@@ -765,23 +765,44 @@
   align-items: center;
 }
 
+/* Collage: foto del foro y, superpuesta abajo a la derecha, la mesa con los productos. */
+.historiaCollage {
+  position: relative;
+  padding-bottom: 14%;
+}
+
 .historiaFoto {
   position: relative;
+  width: 80%;
   margin: 0;
-  aspect-ratio: 583 / 664;
+  aspect-ratio: 3 / 4;
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 30px 70px rgba(24, 38, 36, 0.25);
 }
 
-.historiaFoto img {
+.historiaFoto img,
+.historiaInset img {
   object-fit: cover;
+}
+
+.historiaInset {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 62%;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border: 6px solid var(--papel);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(24, 38, 36, 0.3);
 }
 
 .historiaFoto figcaption {
   position: absolute;
   left: 16px;
-  bottom: 16px;
+  top: 16px;
   padding: 8px 14px;
   border-radius: 999px;
   background: rgba(238, 240, 236, 0.92);
@@ -1737,8 +1758,8 @@ a.canal:hover .canalFlecha {
     grid-template-columns: 1fr 1fr;
   }
 
-  .historiaFoto {
-    max-width: 480px;
+  .historiaCollage {
+    max-width: 520px;
   }
 
   .producto {
@@ -2009,10 +2030,17 @@ a.canal:hover .canalFlecha {
     padding-block: var(--ritmo);
   }
 
-  .historiaFoto {
+  .historiaCollage {
     max-width: none;
-    aspect-ratio: 4 / 5;
+  }
+
+  .historiaFoto {
     border-radius: 20px;
+  }
+
+  .historiaInset {
+    border-width: 4px;
+    border-radius: 16px;
   }
 
   .parrafo {
