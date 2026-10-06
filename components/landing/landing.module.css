@@ -1745,9 +1745,13 @@ a.canal:hover .canalFlecha {
     grid-template-columns: 1fr;
   }
 
+  /* Altura explícita: WebKit (Safari y Chrome en iPhone) ignora aspect-ratio en un ítem de
+     grilla estirado cuyo contenido es todo absoluto, y la caja quedaba con altura 0. */
   .producto .productoMedia {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
+    height: min(125vw, 82svh);
     min-height: 0;
+    align-self: start;
   }
 
   /* Sin efecto 3D en pantallas táctiles: Safari de iOS deja de dibujar elementos con
