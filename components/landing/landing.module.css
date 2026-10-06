@@ -1335,6 +1335,9 @@
   display: flex;
   width: 100%;
   overflow-x: auto;
+  /* Sin esto el eje vertical también scrollea: las tarjetas que todavía no entraron
+     quedan 40px más abajo por la animación y hacen que la pista se mueva para arriba y abajo. */
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
