@@ -2110,8 +2110,9 @@ a.canal:hover .canalFlecha {
     margin-top: -19px;
   }
 
+  /* En celular la foto del nene después del carrusel no suma: solo se muestra en tablet y desktop. */
   .accesoriosFoto {
-    aspect-ratio: 4 / 5;
+    display: none;
   }
 
   /* Contacto */
