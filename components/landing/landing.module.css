@@ -398,8 +398,7 @@
   flex-shrink: 0;
   width: 20px;
   height: 14px;
-  border-radius: 3px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
 }
 
 span > .bandera {

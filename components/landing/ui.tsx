@@ -294,24 +294,8 @@ const ICONOS: Record<string, React.ReactNode> = {
 
 // Banderas en SVG: los emojis de bandera no se ven en Windows (aparecen como "US" / "AR").
 export function Bandera({ pais }: { pais: 'us' | 'ar' }) {
-  if (pais === 'ar') {
-    return (
-      <svg className={s.bandera} viewBox="0 0 18 12" aria-hidden>
-        <rect width="18" height="12" fill="#74acdf" />
-        <rect y="4" width="18" height="4" fill="#fff" />
-        <circle cx="9" cy="6" r="1.3" fill="#f6b40e" />
-      </svg>
-    );
-  }
-  return (
-    <svg className={s.bandera} viewBox="0 0 19 10" preserveAspectRatio="none" aria-hidden>
-      <rect width="19" height="10" fill="#b22234" />
-      {[1, 3, 5, 7, 9].map((y) => (
-        <rect key={y} y={(y * 10) / 13} width="19" height={10 / 13} fill="#fff" />
-      ))}
-      <rect width="7.6" height={(10 * 7) / 13} fill="#3c3b6e" />
-    </svg>
-  );
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img className={s.bandera} src={`/landing/flag-${pais}.svg`} alt="" width={20} height={14} />;
 }
 
 export function Icono({ nombre, size = 22, className }: { nombre: string; size?: number; className?: string }) {
