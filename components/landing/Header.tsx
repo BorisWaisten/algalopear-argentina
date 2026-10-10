@@ -60,16 +60,6 @@ export function Header() {
 
           <div className={s.navDerecha}>
             <SelectorIdioma />
-            <motion.a
-              href={comprarHref(lang)}
-              target="_blank"
-              rel="noreferrer"
-              className={`${s.btn} ${s.btnPlata} ${s.navComprar}`}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-            >
-              {t(UI.comprar)}
-            </motion.a>
             <button
               type="button"
               className={`${s.hamburguesa} ${abierto ? s.hamburguesaOn : ''}`}
@@ -107,9 +97,6 @@ export function Header() {
                 </motion.a>
               ))}
             </motion.nav>
-            <a href={comprarHref(lang)} target="_blank" rel="noreferrer" className={`${s.btn} ${s.btnPlata}`}>
-              {t(UI.comprar)}
-            </a>
           </motion.div>
         )}
       </AnimatePresence>

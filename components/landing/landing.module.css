@@ -451,7 +451,6 @@ span > .bandera {
   z-index: 40;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 40px;
   padding: calc(var(--header-h) + 20px) 28px 40px;
   background: radial-gradient(ellipse at 100% 0%, var(--petroleo-claro), var(--hondo) 70%);
@@ -469,7 +468,7 @@ span > .bandera {
   align-items: baseline;
   gap: 16px;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2.2rem, 10vw, 3.2rem);
+  font-size: clamp(1.5rem, 10vw, 2rem);
   line-height: 1.2;
 }
 
