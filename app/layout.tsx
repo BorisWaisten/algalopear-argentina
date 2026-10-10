@@ -4,8 +4,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Algalope Argentina | En construcción',
-  description: 'Landing page en construcción con una identidad moderna y animaciones suaves.',
+  title: 'Al Galope Yerba Mate',
+  description: 'Yerba mate from Misiones, Argentina.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

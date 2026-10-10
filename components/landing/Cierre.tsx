@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 import { CONTACTO, CONTACTO_TXT, UI } from './content';
 import s from './landing.module.css';
-import { EASE, Eyebrow, Guarda, Icono, Reveal, Titulo, navHref, useLang, whatsappHref } from './ui';
+import { Bandera, EASE, Eyebrow, Guarda, Icono, Reveal, Titulo, navHref, useLang, whatsappHref } from './ui';
 
 export function Contacto() {
   const { lang, t } = useLang();
@@ -77,7 +77,7 @@ export function Footer() {
             </span>
             <div>
               <strong className={`${s.display} ${s.plata}`}>Al Galope</strong>
-              <span>Yerba Mate · {t(CONTACTO_TXT.hecho)} 🇦🇷</span>
+              <span>Yerba Mate · {t(CONTACTO_TXT.hecho)} <Bandera pais="ar" /></span>
             </div>
           </div>
           <nav className={s.footerNav}>
@@ -108,7 +108,7 @@ export function Footer() {
 }
 
 export function WhatsAppFlotante() {
-  const { lang, t } = useLang();
+  const { lang } = useLang();
   return (
     <>
       <motion.a
@@ -125,7 +125,6 @@ export function WhatsAppFlotante() {
         <motion.span className={s.wspOnda} animate={{ scale: [1, 1.7], opacity: [0.5, 0] }} transition={{ duration: 2, repeat: Infinity }} />
         <Icono nombre="whatsapp" size={28} />
       </motion.a>
-      <span className={s.borrador}>{t(UI.borrador)}</span>
     </>
   );
 }

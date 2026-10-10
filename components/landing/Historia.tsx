@@ -22,7 +22,6 @@ export function Historia() {
             transition={{ duration: 1.3, ease: EASE }}
           >
             <Image src="/landing/forum-laila-mate.webp" alt="Laila sharing Al Galope yerba mate at the Santa Fe Business Forum" fill sizes="(max-width: 900px) 80vw, 34vw" />
-            <figcaption>{t(HISTORIA.foro)}</figcaption>
           </motion.figure>
 
           <motion.figure

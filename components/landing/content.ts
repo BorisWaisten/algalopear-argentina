@@ -33,7 +33,6 @@ export const UI = {
   ],
   comprar: { en: 'Buy Al Galope', es: 'Comprar Al Galope' } as T,
   comprarProducto: { en: 'Buy', es: 'Comprar' } as T,
-  borrador: { en: 'Draft v1', es: 'Borrador v1' } as T,
 };
 
 export const HERO = {
@@ -74,7 +73,6 @@ export const HISTORIA = {
       'Combinamos métodos artesanales de cosecha con un riguroso control en cada etapa del proceso —desde la hoja nativa hasta el empaque final— para ofrecer un producto de baja acidez, estacionamiento natural y molienda equilibrada. Diseñada para trascender fronteras, Al Galope invita a descubrir la verdadera identidad de nuestra tierra en cada mate, satisfaciendo los estándares más altos del mundo.',
     ],
   },
-  foro: { en: 'Santa Fe Business Forum 2026', es: 'Santa Fe Business Forum 2026' } as T,
 };
 
 export type Spec = { icono: string; label: T; valor: T };

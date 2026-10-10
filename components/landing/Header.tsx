@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 
 import { UI, type Lang } from './content';
 import s from './landing.module.css';
-import { EASE, comprarHref, navHref, useLang } from './ui';
+import { Bandera, EASE, comprarHref, navHref, useLang } from './ui';
 
 export function Header() {
   const { lang, t } = useLang();
@@ -141,9 +141,9 @@ function Marquee({ frases }: { frases: string[] }) {
 
 function SelectorIdioma() {
   const { lang, setLang } = useLang();
-  const opciones: [Lang, string, string][] = [
-    ['en', '🇺🇸', 'English'],
-    ['es', '🇦🇷', 'Español'],
+  const opciones: [Lang, 'us' | 'ar', string][] = [
+    ['en', 'us', 'English'],
+    ['es', 'ar', 'Español'],
   ];
   return (
     <div className={s.idiomas} role="group" aria-label="Language">
@@ -157,7 +157,7 @@ function SelectorIdioma() {
           className={lang === l ? s.idiomaOn : ''}
         >
           {lang === l && <motion.span layoutId="idioma-pill" className={s.idiomaPill} transition={{ type: 'spring', stiffness: 500, damping: 34 }} />}
-          <span className={s.bandera}>{bandera}</span>
+          <Bandera pais={bandera} />
           <span>{l.toUpperCase()}</span>
         </button>
       ))}
