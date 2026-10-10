@@ -295,7 +295,7 @@ export const CONTACTO_TXT = {
   eyebrow: { en: 'Contact us', es: 'Contacto' } as T,
   titulo: { en: ["Let's share", 'a mate.'], es: ['Compartamos', 'un mate.'] },
   texto: {
-    en: 'Importers, distributors and mate lovers: write to us and we will get back to you soon.',
+    en: 'Importers, distributors, and mate lovers: get in touch with us, and we will get back to you shortly.',
     es: 'Importadores, distribuidores y amantes del mate: escribinos y te respondemos a la brevedad.',
   } as T,
   hecho: { en: 'Made in Argentina', es: 'Hecho en Argentina' } as T,
