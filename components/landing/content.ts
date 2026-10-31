@@ -13,11 +13,9 @@ export const CONTACTO = {
   ciudad: { en: 'Buenos Aires, Argentina', es: 'Buenos Aires, Argentina' } as T,
 };
 
-// Link de la tienda. Por ahora todos los botones van a la misma publicación de MercadoLibre
-// (después va uno por producto). Si queda vacío, los botones de compra
-// abren WhatsApp con el producto ya escrito.
-export const TIENDA_URL =
-  'https://www.mercadolibre.com.ar/peluche-de-mate-20-cm/p/MLA53807652?pdp_filters=seller_id%3A3567171418';
+// Link de la tienda: todos los botones de compra y el ítem "Tienda" van a la tienda oficial
+// de MercadoLibre. Si queda vacío, los botones de compra abren WhatsApp con el producto ya escrito.
+export const TIENDA_URL = 'https://www.mercadolibre.com.ar/pagina/algalope';
 
 export const UI = {
   marquee: {
